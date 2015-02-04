@@ -87,11 +87,15 @@ var map;
 function initialize() {
   var mapOptions = {
     zoom: 8,
+
+    // TODO: change the home-page map center
     center: new google.maps.LatLng(-34.397, 150.644),
     scrollwheel: false,
   };
   map = new google.maps.Map(document.getElementById('map'),
       mapOptions);
+
+  // TODO: add a marker to the map in the location of the school
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
