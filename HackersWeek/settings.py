@@ -8,6 +8,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
+
+from django.contrib import messages
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -24,7 +26,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -36,6 +38,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Django sites framework required for allauth
+    'django.contrib.sites',
+    # django-allauth apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     # Installed www application
     'www'
 )
@@ -83,3 +91,42 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Django Allauth Configurations
+# http://django-allauth.readthedocs.org/en/latest/installation.html
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    # Required by django itself
+    "django.contrib.auth.context_processors.auth",
+    # Required by allauth template tags
+    "django.core.context_processors.request",
+    # allauth specific context processors
+    "allauth.account.context_processors.account",
+    "allauth.socialaccount.context_processors.socialaccount",
+    # Required for messages
+    "django.contrib.messages.context_processors.messages",
+)
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+SITE_ID = 1
+
+# Login URL
+
+LOGIN_REDIRECT_URL = '/'
+
+# Required for editing the allauth templates
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
+
+STATICFILES_DIRS = ( os.path.join(BASE_DIR, "static"),)
+
+MESSAGE_TAGS = {messages.DEBUG: 'debug',
+                messages.INFO: 'info',
+                messages.SUCCESS: 'success',
+                messages.WARNING: 'warning',
+                messages.ERROR: 'danger'}

@@ -1,0 +1,28 @@
+{% extends "account/base.html" %}
+
+{% load url from future %}
+{% load i18n %}
+
+{% block head_title %} - {% trans "Registro" %}{% endblock %}
+{% block hide_login %}{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top:100px; padding-bottom:150px;">
+<h1>{% trans "Registro" %}</h1>
+
+<p>{% blocktrans %}¿Tienes ya una cuenta? <a href="{{ login_url }}">Inicia sesión aquí</a>.{% endblocktrans %}</p>
+
+<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
+</form>
+</div>
+
+
+{% endblock %}
+
+

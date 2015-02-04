@@ -1,0 +1,77 @@
+{% load url from future %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UMA Hackers Week{% block head_title %}{% endblock %}</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+  <!-- Extra Head -->
+  {% block extra_head %}
+    {% endblock %}
+  <link href="http://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Ruda" rel="stylesheet" type="text/css">
+</head>
+<body>
+{% block body %}
+<header class="container-fluid">
+  <div class="container">
+    <a href="{% url 'home' %}"><img id="hackers-week-logo" alt="Hackers Week" src="{% static 'img/hackers-week.png' %}"></a>
+    {% block hide_login %}
+      {% if user.is_authenticated %}
+        <a href="{% url 'account_logout' %}"><button class="btn btn-login pull-right">Cerrar Sesión</button></a>
+      {% else %}
+        <a href="{% url 'account_login' %}"><button class="btn btn-login pull-right">Iniciar Sesión</button></a>
+      {% endif %}
+    {% endblock %}
+  </div>
+</header>
+
+{% if messages %}
+  {% for message in messages %}
+    <div class="container-fluid text-center alert alert-{% if message.tags %}{{ message.tags }}{% endif %} alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      {{message}}
+    </div>
+  {% endfor %}
+{% endif %}
+
+
+{% block content %}{% endblock %}
+<footer class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <p>
+        Consejo de Estudiantes - ETSI Informática<br>
+        Blvd. Louis Pasteur, 35<br>
+        Despacho 3.2.B1<br>
+        29027 Campus de Teatinos<br>
+        Málaga<br>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p>
+        E-mail: consejoinfuma@gmail.com<br>
+        Tlf: 952 13 33 00<br>
+        <img class="social-network" alt="Twitter" src="{% static 'img/twitter.png' %}">
+        <img class="social-network" alt="Facebook" src="{% static 'img/facebook.png' %}">
+        <img class="social-network" alt="Google+" src="{% static 'img/gplus.png' %}">
+        </p>
+      </div>
+      <div class="col-md-4 uma-logos">
+        <a href="http://www.uma.es"><img alt="Universidad de Málaga" src="{% static 'img/uma.png' %}"></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- jQuery JS -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<!-- Bootstrap JS -->
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<!-- Extra body -->
+{% block extra_body %}{% endblock %}
+{% endblock %}
+</body>
+</html>

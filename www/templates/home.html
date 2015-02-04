@@ -1,10 +1,9 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load i18n %}
 
-{% block custom_head %}
+{% block extra_head %}
 	<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
-	<link href="http://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet" type="text/css">
-	<link href="http://fonts.googleapis.com/css?family=Ruda" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block content %}
@@ -224,7 +223,7 @@
 
 {% endblock %}
 
-{% block custom_js %}
+{% block extra_body %}
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
 <script type="text/javascript">
 

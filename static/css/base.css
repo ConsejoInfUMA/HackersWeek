@@ -63,6 +63,30 @@ footer{
     background-color: #C4C4C4;
 }
 
+.btn.btn-login{
+	margin-top: 40px;
+	border-radius: 0px;
+	border: 0px none;
+	background-color: #0097B7;
+	color: #FFF;
+	text-align: center;
+	font-family: "Ruda",Arial,sans-serif;
+	font-size: inherit;
+	font-weight: normal;
+	font-style: normal;
+}
+
+.alert{
+	margin-bottom: 0px;
+	border-radius: 0px;
+}
+
+.alert-debug {
+    color: white;
+    background-color: #0097B7;
+    border-color: #192D35;
+}
+
 
 @media screen and (max-width: 991px) {
     header {
