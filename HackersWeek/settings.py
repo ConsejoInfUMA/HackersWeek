@@ -45,7 +45,8 @@ INSTALLED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
     # Installed www application
-    'www'
+    'www',
+    'control'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -121,9 +122,13 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 
 # Required for editing the allauth templates
-TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 STATICFILES_DIRS = ( os.path.join(BASE_DIR, "static"),)
+
+# Email verification
+
+ACCOUNT_EMAIL_VERIFICATION = None
 
 MESSAGE_TAGS = {messages.DEBUG: 'debug',
                 messages.INFO: 'info',

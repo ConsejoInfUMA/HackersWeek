@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.messages import get_messages
@@ -5,6 +6,8 @@ from django.contrib.messages import get_messages
 
 
 def home(request):
+	if request.user.is_staff:
+		messages.add_message(request, messages.INFO, "<a href='/control/'>¡Accede aqui al area de STAFF</a>!")
 	context = {}
 	return render(request, 'home.html', context)
 
