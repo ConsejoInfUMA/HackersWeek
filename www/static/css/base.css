@@ -3,6 +3,10 @@ body{
 	-moz-osx-font-smoothing: grayscale;
 }
 
+#hackers-week-logo{
+	margin-top: 40px;
+}
+
 header{
 	height: 110px;
 	background-color: #192D35;
@@ -31,6 +35,35 @@ footer{
 	text-align: right;
 }
 
+.btn.btn-hackers{
+	border-radius: 0px;
+	border: 0px none;
+	background-color: #0097B7;
+	color: #FFF;
+	text-align: center;
+	font-family: "Ruda",Arial,sans-serif;
+	font-size: inherit;
+	font-weight: normal;
+	font-style: normal;
+}
+
+.btn.btn-hackers:hover{
+	background-color: #192D35;
+}
+
+.btn.btn-hackers.inscribed{
+    background-color: #87AE2A;
+}
+
+.btn.btn-hackers.inscribed:hover{
+    background-color: #CC1B1B;
+}
+
+.btn.btn-hackers:disabled{
+    background-color: #C4C4C4;
+}
+
+
 @media screen and (max-width: 991px) {
     header {
         text-align: center;
@@ -40,6 +73,11 @@ footer{
     	text-align: center;
     	padding-bottom: 50px;
     }
+
+    .container{
+		padding-left: 40px;
+		padding-right: 40px;
+	}
 
     .uma-logo{
     	text-align: center;

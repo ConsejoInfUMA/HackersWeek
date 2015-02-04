@@ -7,11 +7,13 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
 	{% block custom_head %}{% endblock %}
+	<link href="http://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Ruda" rel="stylesheet" type="text/css">
 </head>
 <body>
 <header class="container-fluid">
 	<div class="container">
-		<img id="hackers-week-logo" alt="Hackers Week" src="{% static 'img/hackers-week.png' %}">
+		<a href="{% url 'home' %}"><img id="hackers-week-logo" alt="Hackers Week" src="{% static 'img/hackers-week.png' %}"></a>
 	</div>
 </header>
 {% block content %}{% endblock %}

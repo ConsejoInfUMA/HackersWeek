@@ -1,0 +1,33 @@
+/* ACTIVITY.css */ 
+
+.activity{
+	color: black;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	background-color: #FFF;
+}
+
+#map{
+	height: 340px;
+}
+
+h1 {
+    font-size: 2.1em;
+}
+
+.speaker {
+	margin-top: 15px;
+    font-weight: bold;
+    margin-top: -0.3em;
+    margin-bottom: 1em;
+}
+
+.all-width{
+	height: 45px;
+	font-size: 19px !important;
+	width: 100%;
+}
+
+@media screen and (max-width: 991px) {
+
+}

@@ -1,9 +1,5 @@
 /* HOME.css */ 
 
-#hackers-week-logo{
-	margin-top: 40px;
-}
-
 .header-img{
 	height: 400px;
 	background: url("../img/background.jpg") no-repeat scroll center center / cover transparent;
@@ -47,17 +43,25 @@
 	background-color: #0A455D;
 	text-align: center;
 	color: #FFF;
+	margin-bottom: 0px;
 }
 
 .timetable .event{
-	font-size: 14px;
-	margin-top: 2px;
+	font-size: 16px;
 	padding: 10px;
-	height: 140px;
+	height: 160px;
 	padding: 10px;
 	background-color: #DFDFDF;
-	line-height: 130px;
+	line-height: 150px;
 	text-align: center;
+}
+
+.timetable .event:hover{
+	background-color: #C4C4C4;
+}
+
+.timetable .event:hover{
+	color:black;
 }
 
 .timetable .event .text{
@@ -66,13 +70,25 @@
 	line-height: normal;
 }
 
-.timetable-hour{
+.timetable a .event{
+	color: black;
+}
+
+.timetable .event.suscribed {
+    background-image: url("../img/corner.png");
+    background-position: right bottom;
+    background-repeat: no-repeat;
+}
+
+
+.timetable .hour{
 	height: 45px;
-	margin-top: 2px;
 	background-color: #192D35;
 	line-height: 45px;
 	text-align: center;
 	color: #FFF;
+	margin-bottom: 0px;
+	margin-top: 0px;
 }
 
 
