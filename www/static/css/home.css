@@ -1,0 +1,83 @@
+/* HOME.css */ 
+
+#hackers-week-logo{
+	margin-top: 40px;
+}
+
+.header-img{
+	height: 400px;
+	background: url("../img/background.jpg") no-repeat scroll center center / cover transparent;
+}
+
+.header-img .text{
+	width: auto;
+	padding: 20px;
+	color: #FFF !important;
+	font-size: 30px;
+	line-height: 35px;
+	display: inline-block;
+	position: relative;
+	top: 230px;
+	background-color: #0097B7;
+}
+
+.darkzone{
+	background-color: #192D35;
+	padding: 100px 0px;
+	color: #FFF;
+	font: 300 18px/26px "Roboto",sans-serif;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.lightzone{
+	padding: 100px 0px;
+	background-color: #FFF;
+	font-family: "Ruda",Arial,sans-serif;
+	color: #1A1A1A;
+}
+
+
+.timetable .header{
+	height: 45px;
+	line-height: 45px;
+	background-color: #0A455D;
+	text-align: center;
+	color: #FFF;
+	font-family: "Ruda",Arial,sans-serif;
+}
+
+.timetable .event{
+	margin-top: 2px;
+	padding: 10px;
+	height: 140px;
+	padding: 10px;
+	background-color: #DFDFDF;
+	line-height: 130px;
+	text-align: center;
+}
+
+.timetable .event .text{
+	font-size: 18px;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: normal;
+	font-family: "Ruda",Arial,sans-serif;
+}
+
+.timetable-hour{
+	height: 45px;
+	margin-top: 2px;
+	background-color: #192D35;
+	line-height: 45px;
+	text-align: center;
+	color: #FFF;
+}
+
+
+#map{
+	height: 400px;
+}
+
+@media screen and (max-width: 991px) {
+
+}

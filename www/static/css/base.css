@@ -1,0 +1,47 @@
+body{
+	font: 300 18px/26px "Roboto",sans-serif;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+header{
+	height: 110px;
+	background-color: #192D35;
+	color: #E4E4E4
+}
+
+.container{
+	padding-left: 120px;
+	padding-right: 120px;
+}
+
+footer{
+	background-color: #192D35;
+	padding: 50px 0px 100px;
+	font: 12px/19px "Roboto","Arial Light","Arial",sans-serif;
+	color: #E4E4E4;
+}
+
+.social-network{
+	margin-top: 10px;
+	margin-right: 10px;
+	margin-bottom: 25px;
+}
+
+.uma-logo{
+	text-align: right;
+}
+
+@media screen and (max-width: 991px) {
+    header {
+        text-align: center;
+    }
+
+    footer{
+    	text-align: center;
+    	padding-bottom: 50px;
+    }
+
+    .uma-logo{
+    	text-align: center;
+    }
+}

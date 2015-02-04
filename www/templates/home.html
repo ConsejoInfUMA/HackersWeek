@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block custom_head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+	<link href="http://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Ruda" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid header-img">
+	<div class="container">
+		<div class="text">
+			<!-- TODO: make the header text editable -->
+			El evento para desarrolladores y estudiantes.<br>
+			Del 7 al 10 de abril en Málaga.
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid darkzone">
+	<div class="container">
+	<!-- TODO: make the description text editable -->
+	Seguridad informática, programación, talleres prácticos, ¡y mucho más! No te pierdas el evento para estudiantes y desarrolladores en la Universidad de Málaga, abierto gratuitamente a todo el público, del 7 al 10 de abril de 2014. Cuatro días cargados con las últimas tecnologías y los mejores ponentes: Sergio de los Santos, Bernardo Quintero, Jorge del Casar, M. Gonzalo Claros, Ironhack...
+	</div>
+</div>
+
+
+<!-- TODO: develop calendar -->
+<div class="container-fluid lightzone">
+	<div class="container timetable">
+		<div class="row">
+			<div class="col-md-3 header">Conferencias</div>
+			<div class="col-md-3 header">Talleres</div>
+			<div class="col-md-3 header">Juegos</div>
+			<div class="col-md-3 header">Deportes</div>	
+		</div>
+		<div class="row">
+			<div class="col-md-12 timetable-hour">10:30 - 12:30</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3 event"> 
+			<p class="text"> 
+			Arquitecturas gráficas para altas prestaciones: Logros y perspectivas con CUDA
+			</p>
+			</div>
+			<div class="col-md-3 event"> 
+			<p class="text"> 
+			Arquitecturas gráficas para altas prestaciones: Logros y perspectivas con CUDA
+			</p>
+			</div>
+			<div class="col-md-3 event"> 
+			<p class="text"> 
+			Arquitecturas gráficas para altas prestaciones: Logros y perspectivas con CUDA
+			</p>
+			</div>	
+			<div class="col-md-3 event"> 
+			<p class="text"> 
+			Arquitecturas gráficas para altas prestaciones: Logros y perspectivas con CUDA
+			</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid darkzone">
+	<!-- TODO: make the text about location editable -->
+	<div class="container">
+	La E.T.S. Ingeniería Informática se encuentra en el Campus de Teatinos de la Universidad de Málaga, junto al Hospital Clínico Universitario Virgen de la Victoria.<br><br>
+	Tanto las conferencias como los talleres y las sesiones de juegos tendrán lugar en la Escuela, mientras que las actividades deportivas se realizarán en las instalaciones del Complejo Deportivo Universitario. Ambos edificios cuentan con cafetería y zonas de aparcamiento.<br><br>
+	Se puede venir fácilmente en autobús desde el centro de la ciudad en las líneas 8, 11 o 25 de la EMT, que tienen parada en la Alameda Principal. A ella es rápido llegar desde la Estación de Autobuses, la estación de tren Málaga-María Zambrano o la estación Málaga Centro-Alameda, donde paran las líneas C-1 y C-2 de Cercanías.
+	</div>
+</div>
+
+<div class="container-fluid" id="map">
+	<br><br>
+</div>
+
+{% endblock %}
+
+{% block custom_js %}
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+<script type="text/javascript">
+
+var map;
+
+function initialize() {
+  var mapOptions = {
+    zoom: 8,
+    center: new google.maps.LatLng(-34.397, 150.644),
+    scrollwheel: false,
+  };
+  map = new google.maps.Map(document.getElementById('map'),
+      mapOptions);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+
+
+{% endblock %}

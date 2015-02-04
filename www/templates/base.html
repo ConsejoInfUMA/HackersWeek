@@ -1,0 +1,50 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>UMA Hackers Week{% block title %}{% endblock %}</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+	{% block custom_head %}{% endblock %}
+</head>
+<body>
+<header class="container-fluid">
+	<div class="container">
+		<img id="hackers-week-logo" alt="Hackers Week" src="{% static 'img/hackers-week.png' %}">
+	</div>
+</header>
+{% block content %}{% endblock %}
+<footer class="container-fluid">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<p>
+				Consejo de Estudiantes - ETSI Informática<br>
+				Blvd. Louis Pasteur, 35<br>
+				Despacho 3.2.B1<br>
+				29027 Campus de Teatinos<br>
+				Málaga<br>
+				</p>
+			</div>
+			<div class="col-md-4">
+				<p>
+				E-mail: consejoinfuma@gmail.com<br>
+				Tlf: 952 13 33 00<br>
+				<img class="social-network" alt="Twitter" src="{% static 'img/twitter.png' %}">
+				<img class="social-network" alt="Facebook" src="{% static 'img/facebook.png' %}">
+				<img class="social-network" alt="Google+" src="{% static 'img/gplus.png' %}">
+				</p>
+			</div>
+			<div class="col-md-4 uma-logos">
+				<a href="http://www.uma.es"><img alt="Universidad de Málaga" src="{% static 'img/uma.png' %}"></a>
+			</div>
+		</div>
+	</div>
+</footer>
+</body>
+<!-- Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<!-- Custom JS -->
+{% block custom_js %}{% endblock %}
+</html>
