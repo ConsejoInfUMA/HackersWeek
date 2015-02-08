@@ -9,10 +9,9 @@ def home(request):
 	return render(request, 'home.html', context)
 
 def activity(request):
-	#messages.add_message(request, messages.DEBUG, "Horsey Bollox!")
-
-	storage = get_messages(request)
-	for message in storage:
-		print message 
 	context = {}
 	return render(request, 'activity.html', context)
+
+def create_profile(request):
+	context = {}
+	return render(request, 'create_profile.html', context)
