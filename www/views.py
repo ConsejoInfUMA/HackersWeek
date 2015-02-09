@@ -1,23 +1,20 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.messages import get_messages
+from django.shortcuts import render, redirect
 from .models import *
+from .decorators import *
 
 
-
+@check_if_user_has_profile
 def home(request):
-	if request.user.is_authenticated:
-		pass
-		#need to try
 
 	context = {}
 	return render(request, 'home.html', context)
 
+@check_if_user_has_profile
 def activity(request):
-	if request.user.is_authenticated:
-		pass
-		#need to try
+
 	context = {}
 	return render(request, 'activity.html', context)
 
