@@ -42,7 +42,7 @@ class TimeStripe(models.Model):
 
 class Event(models.Model):
 	"""
-	Model for an event
+	Model for an Event
 	"""
 	kind_of_event = models.CharField(max_length=1, choices=KIND_OF_EVENT_CHOICES, default='C')
 	name = models.CharField(max_length=255)
