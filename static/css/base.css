@@ -89,6 +89,9 @@ footer{
 
 
 @media screen and (max-width: 991px) {
+	#hackers-week-logo{
+		width: 90%;
+	}
     header {
         text-align: center;
     }
