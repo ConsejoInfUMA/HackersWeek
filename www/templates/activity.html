@@ -34,10 +34,13 @@ En la década anterior fuimos testigos de la irrupción de las GPUs como acelera
   </div>
 </div>
 
-<div id="map">
+</div>
+<div class="container container-map">
+  <div id="map">
+  </div>
 </div>
 
-</div>
+
 {% endblock %}
 
 {% block extra_body %}
@@ -48,11 +51,11 @@ var map;
 
 function initialize() {
   var mapOptions = {
-    zoom: 8,
-
+    zoom: 15,
     // TODO: change the home-page map center for activities
-    center: new google.maps.LatLng(-34.397, 150.644),
+    center: new google.maps.LatLng(36.715429, -4.476922),
     scrollwheel: false,
+    draggable: false,
   };
   map = new google.maps.Map(document.getElementById('map'),
       mapOptions);

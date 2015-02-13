@@ -3,7 +3,6 @@
 .activity{
 	color: black;
 	padding-top: 50px;
-	padding-bottom: 50px;
 	background-color: #FFF;
 }
 
@@ -37,7 +36,13 @@ h1 {
 	font-size: 19px !important;
 	width: 100%;
 }
-
+.container-map{
+	padding-bottom: 50px;
+}
 @media screen and (max-width: 768px) {
+
+	.container-map{
+		padding:0px;
+	}
 
 }
