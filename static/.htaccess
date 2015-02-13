@@ -1,0 +1,19 @@
+# Apache File Caching for Hackers Week Website
+
+AddType image/x-icon .ico
+<IfModule mod_headers.c>
+	# One year caching for images and pdfs
+	<FilesMatch ".(ico|gif|jpg|jpeg|png|pdf)$">
+	 Header set Cache-Control "max-age=29030400"
+	</FilesMatch>
+
+	# One week caching for js&css files
+	<FilesMatch ".(js|css)$">
+	 Header set Cache-Control "max-age=604800"
+	</FilesMatch>
+
+	# One day caching for html, htm and txt
+	<FilesMatch ".(html|htm|txt)$">
+	 Header set Cache-Control "max-age=86400"
+	</FilesMatch>
+</IfModule>
