@@ -44,7 +44,7 @@ def calendar(request):
 	for day in DAY_CHOICES:
 		response.update({day[0]:{'day_name':day[1], 'day_no':day[0] ,'stripes':{}}})
 		for stripe in TIME_STRIPE_CHOICES:
-			response[day[0]]['stripes'].update({stripe[0]:{'time':TIME_STRIPE_CALENDAR_DISPLAY[1],'events':{}}})
+			response[day[0]]['stripes'].update({stripe[0]:{'time':TIME_STRIPE_CALENDAR_DISPLAY[stripe[0]-1][1],'events':{}}})
 			for koe in KIND_OF_EVENT_CHOICES:
 				response[day[0]]['stripes'][stripe[0]]['events'].update({koe[0]:{'kind':koe[1],'data':{}}})
 
