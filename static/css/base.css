@@ -13,6 +13,10 @@ header{
 	color: #E4E4E4
 }
 
+.aux-header{
+	background-color: #0A455D;
+}
+
 .container{
 	padding-left: 120px;
 	padding-right: 120px;
@@ -63,17 +67,12 @@ footer{
     background-color: #C4C4C4;
 }
 
-.btn.btn-login{
-	margin-top: 40px;
-	border-radius: 0px;
-	border: 0px none;
+#btn-login.btn-hackers:hover{
 	background-color: #0097B7;
-	color: #FFF;
-	text-align: center;
-	font-family: "Ruda",Arial,sans-serif;
-	font-size: inherit;
-	font-weight: normal;
-	font-style: normal;
+}
+
+#btn-login{
+	margin-top: 40px;
 }
 
 .alert{
@@ -87,10 +86,24 @@ footer{
     border-color: #192D35;
 }
 
+@media screen and (max-width: 992px) {
 
-@media screen and (max-width: 991px) {
+	.container{
+		padding-left: 70px;
+		padding-right: 70px;
+	}
+
+}
+
+
+@media screen and (max-width: 768px) {
+
+	#btn-login{
+		margin: 5px auto;
+		clear: both;
+	}
 	#hackers-week-logo{
-		width: 90%;
+		width: 100%;
 	}
     header {
         text-align: center;
@@ -102,8 +115,8 @@ footer{
     }
 
     .container{
-		padding-left: 40px;
-		padding-right: 40px;
+		padding-left: 20px;
+		padding-right: 20px;
 	}
 
     .uma-logo{

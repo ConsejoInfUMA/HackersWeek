@@ -96,6 +96,23 @@
 	height: 400px;
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 768px) {
+
+.header-img .container{
+	padding: 0;
+}
+
+.header-img .text{
+	width: 100%;
+	padding: 20px;
+	color: #FFF !important;
+	font-size: 23px;
+	line-height: 30px;
+	display: inline-block;
+	position: relative;
+	top: 100px;
+	background-color: #0097B7;
+}
+
 
 }
