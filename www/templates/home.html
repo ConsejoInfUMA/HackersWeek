@@ -26,185 +26,40 @@
 
 
 <!-- TODO: develop calendar -->
-<div class="container-fluid lightzone">
-	<div class="container timetable">
-		<div class="row">
-			<div class="col-md-3 header hidden-sm hidden-xs">Conferencias</div>
-			<div class="col-md-3 header hidden-sm hidden-xs">Talleres</div>
-			<div class="col-md-3 header hidden-sm hidden-xs">Juegos</div>
-			<div class="col-md-3 header hidden-sm hidden-xs">Deportes</div>	
-		</div>
-		<!-- 10:30 -->
-		<div class="row">
-			<div class="col-md-12 hour">10:30 - 12:30</div>
-		</div>
-		<div class="row">
-			<!-- CONFERENCE-->
-			<div class="col-md-12 header visible-sm visible-xs">Conferencia</div>
-			<a href="{% url 'activity' %}">
-				<div class="col-md-3 event suscribed"> 
-				<p class="text"> 
-				Arquitecturas gráficas para altas prestaciones: Logros y perspectivas con CUDA
-				</p>
-				</div>
-			</a>
-			<!-- WORKSHOP -->
-			<div class="col-md-12 header visible-sm visible-xs">Taller</div>
-			<a>
-				<div class="col-md-3 event"> 
-				<p class="text"> 
-				</p>
-				</div>
-			</a>
-			<!-- GAME -->
-			<div class="col-md-12 header visible-sm visible-xs">Juego</div>
-			<a href="{% url 'activity' %}">
-				<div class="col-md-3 event"> 
-				<p class="text"> 
-				Arquitecturas gráficas para altas prestaciones: Logros y perspectivas con CUDA
-				</p>
-				</div>
-			</a>
-			<!-- SPORT -->
-			<div class="col-md-12 header visible-sm visible-xs">Deporte</div>
-			<a href="{% url 'activity' %}">
-				<div class="col-md-3 event"> 
-				<p class="text"> 
-				Arquitecturas gráficas para altas prestaciones: Logros y perspectivas con CUDA
-				</p>
-				</div>
-			</a>
-		</div>
+<div class="container-fluid lightzone" ng-app="home">
 
-		<!-- 12:30 -->
-		<div class="row">
-			<div class="col-md-12 hour">12:30 - 14:30</div>
-		</div>
-		<div class="row">
-			<!-- CONFERENCE-->
-			<div class="col-md-12 header visible-sm visible-xs">Conferencia</div>
-			<a href="{% url 'activity' %}">
-				<div class="col-md-3 event suscribed"> 
-				<p class="text"> 
-				Arquitecturas gráficas para altas prestaciones: Logros y perspectivas con CUDA
-				</p>
-				</div>
-			</a>
-			<!-- WORKSHOP -->
-			<div class="col-md-12 header visible-sm visible-xs">Taller</div>
-			<a href="{% url 'activity' %}">
-				<div class="col-md-3 event"> 
-				<p class="text"> 
-				Arquitecturas gráficas para altas prestaciones: Logros y perspectivas con CUDA
-				</p>
-				</div>
-			</a>
-			<!-- GAME -->
-			<div class="col-md-12 header visible-sm visible-xs">Juego</div>
-			<a href="{% url 'activity' %}">
-				<div class="col-md-3 event"> 
-				<p class="text"> 
-				Arquitecturas gráficas para altas prestaciones: Logros y perspectivas con CUDA
-				</p>
-				</div>
-			</a>
-			<!-- SPORT -->
-			<div class="col-md-12 header visible-sm visible-xs">Deporte</div>
-			<a href="{% url 'activity' %}">
-				<div class="col-md-3 event"> 
-				<p class="text"> 
-				Arquitecturas gráficas para altas prestaciones: Logros y perspectivas con CUDA
-				</p>
-				</div>
-			</a>
-		</div>
+	<div class="container timetable" ng-controller="CalendarController as calendar">
 
-		<!-- 15:30 -->
-		<div class="row">
-			<div class="col-md-12 hour">15:30 - 17:30</div>
-		</div>
-		<div class="row">
-			<!-- CONFERENCE-->
-			<div class="col-md-12 header visible-sm visible-xs">Conferencia</div>
-			<a href="{% url 'activity' %}">
-				<div class="col-md-3 event suscribed"> 
-				<p class="text"> 
-				Arquitecturas gráficas para altas prestaciones: Logros y perspectivas con CUDA
-				</p>
-				</div>
-			</a>
-			<!-- WORKSHOP -->
-			<div class="col-md-12 header visible-sm visible-xs">Taller</div>
-			<a href="{% url 'activity' %}">
-				<div class="col-md-3 event"> 
-				<p class="text"> 
-				Arquitecturas gráficas para altas prestaciones: Logros y perspectivas con CUDA
-				</p>
-				</div>
-			</a>
-			<!-- GAME -->
-			<div class="col-md-12 header visible-sm visible-xs">Juego</div>
-			<a href="{% url 'activity' %}">
-				<div class="col-md-3 event"> 
-				<p class="text"> 
-				Arquitecturas gráficas para altas prestaciones: Logros y perspectivas con CUDA
-				</p>
-				</div>
-			</a>
-			<!-- SPORT -->
-			<div class="col-md-12 header visible-sm visible-xs">Deporte</div>
-			<a href="{% url 'activity' %}">
-				<div class="col-md-3 event"> 
-				<p class="text"> 
-				Arquitecturas gráficas para altas prestaciones: Logros y perspectivas con CUDA
-				</p>
-				</div>
-			</a>
-		</div>
+	<div class="row day-selector">
+		<ul class="nav nav-pills">
+	  		<li role="presentation" ng-class="{ active:calendar.daySelected(day.day_no) }" ng-repeat="day in calendar.events">
+	  			<a href ng-click="calendar.changeDay(day.day_no)">{$ day.day_name $}</a>
+	  		</li>
+		</ul>
+	</div>
 
-		<!-- 17:30 -->
 		<div class="row">
-			<div class="col-md-12 hour">17:30 - 19:30</div>
+			<div class="col-md-3 header hidden-sm hidden-xs" ng-repeat="activity in calendar.activities">
+			{$ activity $}
+			</div>
 		</div>
-		<div class="row">
-			<!-- CONFERENCE-->
-			<div class="col-md-12 header visible-sm visible-xs">Conferencia</div>
-			<a href="{% url 'activity' %}">
-				<div class="col-md-3 event suscribed"> 
-				<p class="text"> 
-				Arquitecturas gráficas para altas prestaciones: Logros y perspectivas con CUDA
-				</p>
+		<div ng-repeat="stripe in calendar.getStripesFor(calendar.day)">
+			<div class="row">
+				<div class="col-md-12 hour">{$ stripe.time $}</div>
+			</div>
+			<div class="row">
+				<div ng-repeat="event in stripe.events">
+				<div class="col-md-12 header visible-sm visible-xs">{$ event.kind $}</div>
+					<a ng-href="{$ event.url $}">
+					<div class="col-md-3 event" ng-class="{ suscribed:event.enr, linkable:event.url }"> 
+					<p class="text"> 
+						{$ event.name $}
+					</p>
+					</div>
+					</a>
 				</div>
-			</a>
-			<!-- WORKSHOP -->
-			<div class="col-md-12 header visible-sm visible-xs">Taller</div>
-			<a href="{% url 'activity' %}">
-				<div class="col-md-3 event"> 
-				<p class="text"> 
-				Arquitecturas gráficas para altas prestaciones: Logros y perspectivas con CUDA
-				</p>
-				</div>
-			</a>
-			<!-- GAME -->
-			<div class="col-md-12 header visible-sm visible-xs">Juego</div>
-			<a href="{% url 'activity' %}">
-				<div class="col-md-3 event"> 
-				<p class="text"> 
-				Arquitecturas gráficas para altas prestaciones: Logros y perspectivas con CUDA
-				</p>
-				</div>
-			</a>
-			<!-- SPORT -->
-			<div class="col-md-12 header visible-sm visible-xs">Deporte</div>
-			<a href="{% url 'activity' %}">
-				<div class="col-md-3 event"> 
-				<p class="text"> 
-				Arquitecturas gráficas para altas prestaciones: Logros y perspectivas con CUDA
-				</p>
-				</div>
-			</a>
+			</div>
 		</div>
-
 	</div>
 </div>
 
@@ -224,6 +79,8 @@
 {% endblock %}
 
 {% block extra_body %}
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
+<script type="text/javascript" src="{% static 'js/calendar.js' %}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
 <script type="text/javascript">
 

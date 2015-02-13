@@ -19,13 +19,8 @@ COURSE_CHOICES = (
 KIND_OF_EVENT_CHOICES = (
     ('C', 'Conferencia'),
     ('W', 'Taller'),
-    ('GIC', 'Grado en Ingeniería de Computadores'),
-    ('GISa', 'Grado en Ingeniería de la Salud'),
-    ('II', 'Ingeniería Informática (plan antiguo)'),
-    ('ITS', 'Ingeniería Técnica Informática de Sistemas'),
-    ('ITG', 'Ingeniería Técnica Informática de Gestión'),
-    ('OTH', 'Otra Titulación'),
-    ('NOS', 'No soy estudiante de la UMA'),
+    ('J', 'Juego'),
+    ('M', 'Miscelanea'),
 )
 
 TIME_STRIPE_CHOICES = (

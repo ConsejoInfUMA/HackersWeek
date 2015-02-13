@@ -39,6 +39,9 @@ footer{
 	text-align: right;
 }
 
+
+/* Boostrap Changes */
+
 .btn.btn-hackers{
 	border-radius: 0px;
 	border: 0px none;
@@ -84,6 +87,29 @@ footer{
     color: white;
     background-color: #0097B7;
     border-color: #192D35;
+}
+
+
+/* nav  */
+
+.nav > li > a:focus, .nav > li > a:hover {
+    text-decoration: none;
+    background-color: #192D35;
+    color: white;
+}
+
+/* nav-pills */
+
+.nav-pills > li > a{
+	border-radius: 0px;
+	color: black;
+	background-color: #DFDFDF;
+
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+	color: #FFF;
+	background-color: #0097B7;
 }
 
 @media screen and (max-width: 992px) {
