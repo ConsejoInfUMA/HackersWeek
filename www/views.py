@@ -12,18 +12,25 @@ from .decorators import *
 
 #@check_if_user_has_profile
 def home(request):
-
+	"""
+	This function displays the home page
+	"""
 	context = {}
 	return render(request, 'home.html', context)
 
 #@check_if_user_has_profile
 def activity(request):
-
+	"""
+	TODO: This function should displays each activity page
+	"""
 	context = {}
 	return render(request, 'activity.html', context)
 
 def create_profile(request):
-	# TODO: implement create_profile functionality
+	"""
+	TODO: This function should display a page to create a new
+	profile (if the user is logged in and doesn't have one)
+	"""
 	context = {'course_choices':COURSE_CHOICES}
 	return render(request, 'create_profile.html', context)
 
@@ -31,12 +38,13 @@ def create_profile(request):
 def calendar(request):
 	"""
 	This function generates the calendar in JSON
+	TODO: refactoring
 	"""
 	response = {}
 	for day in DAY_CHOICES:
 		response.update({day[0]:{'day_name':day[1], 'day_no':day[0] ,'stripes':{}}})
 		for stripe in TIME_STRIPE_CHOICES:
-			response[day[0]]['stripes'].update({stripe[0]:{'time':stripe[1],'events':{}}})
+			response[day[0]]['stripes'].update({stripe[0]:{'time':TIME_STRIPE_CALENDAR_DISPLAY[1],'events':{}}})
 			for koe in KIND_OF_EVENT_CHOICES:
 				response[day[0]]['stripes'][stripe[0]]['events'].update({koe[0]:{'kind':koe[1],'data':{}}})
 
