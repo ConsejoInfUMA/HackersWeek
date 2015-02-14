@@ -54,6 +54,7 @@ class Event(models.Model):
 	instructions = models.TextField(blank=True, null=True)
 	capacity = models.IntegerField(max_length=4, blank=True, null=True)
 	slug = models.SlugField()
+	confirmed = models.BooleanField(default=True)
 
 	def __unicode__(self):
 		return "<%s: %s>" % (self.get_kind_of_event_display(), self.name)

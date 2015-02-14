@@ -14,11 +14,11 @@ def logged_in_user_has_profile(user):
 def check_if_user_has_profile(function=None):
     """
     Decorator for views that checks that if the user is logged 
-    in it has also an UserProfile. If not, it redirects to 'create_profile'
+    in it has also an UserProfile. If not, it redirects to 'profile_details'
     """
     actual_decorator = user_passes_test(
         lambda u: logged_in_user_has_profile(u),
-        login_url='create_profile'
+        login_url='profile_details'
     )
     if function:
         return actual_decorator(function)

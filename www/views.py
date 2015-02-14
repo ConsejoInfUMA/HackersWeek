@@ -26,6 +26,8 @@ def activity(request, slug):
 	"""
 	context = {}
 
+	#TODO: enrollment logic
+
 	if not Event.objects.filter(slug=slug).exists():
 		return redirect('home')
 	else:
@@ -33,12 +35,16 @@ def activity(request, slug):
 
 	return render(request, 'activity.html', context)
 
-def create_profile(request):
+def profile_details(request):
 	"""
 	TODO: This function should display a page to create a new
-	profile (if the user is logged in and doesn't have one)
+	profile or edit the existing one
 	"""
-	context = {'course_choices':COURSE_CHOICES}
+	context = {}
+
+	# We need to display the course choices in the template
+	context.update({'course_choices':COURSE_CHOICES})
+
 	return render(request, 'create_profile.html', context)
 
 
@@ -47,7 +53,12 @@ def calendar(request):
 	This function generates the calendar in JSON
 	TODO: refactoring
 	"""
+
 	response = {}
+	# Next bucle generates the response base
+	# That could be cached using Django's Cache Framework
+	#
+	# https://docs.djangoproject.com/en/1.7/topics/cache/
 	for day in DAY_CHOICES:
 		response.update({day[0]:{'day_name':DAY_CHOICES_CALENDAR[day[0]-1][1], 'day_no':day[0] ,'stripes':{}}})
 		for stripe in TIME_STRIPE_CHOICES:
@@ -55,8 +66,10 @@ def calendar(request):
 			for koe in KIND_OF_EVENT_CHOICES:
 				response[day[0]]['stripes'][stripe[0]]['events'].update({koe[0]:{'kind':koe[1],'empty':True}})
 
-
-	for event in Event.objects.all():
+	# We load the event variable with all confirmed events
+	events = Event.objects.all().filter(confirmed=True)
+	# And load the response with data from these events
+	for event in events:
 		event_object = {'name':event.name,
 						'enr':True, # TODO: implement user enrolled in www.views.calendar
 						'url':"/".join(['/actividad',event.slug,'']),
