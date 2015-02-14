@@ -17,17 +17,17 @@ COURSE_CHOICES = (
 )
 
 KIND_OF_EVENT_CHOICES = (
-    ('C', 'Conferencia'),
-    ('W', 'Taller'),
-    ('J', 'Juego'),
-    ('M', 'Miscelanea'),
+    ('A', 'Conferencia'),
+    ('B', 'Taller'),
+    ('C', 'Juego'),
+    ('D', 'Miscelanea'),
 )
 
 TIME_STRIPE_CHOICES = (
     (1, '10:30'),
     (2, '11:30'),
     (3, '12:30'),
-    (4, '16:30'),
+    (4, '15:30'),
     (5, '17:30'),
     (6, '18:30'),
 )
@@ -35,7 +35,7 @@ TIME_STRIPE_CALENDAR_DISPLAY = (
     (1, '10:30 - 11:30'),
     (2, '11:30 - 12:30'),
     (3, '12:30 - 15:30'),
-    (4, '16:30 - 17:30'),
+    (4, '15:30 - 17:30'),
     (5, '17:30 - 18:30'),
     (6, '18:30 - 19:30'),
 )
