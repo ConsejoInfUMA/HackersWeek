@@ -90,6 +90,8 @@ footer{
 }
 
 
+
+
 /* nav  */
 
 .nav > li > a:focus, .nav > li > a:hover {
@@ -148,4 +150,16 @@ footer{
     .uma-logo{
     	text-align: center;
     }
+    
+    .hiddenxs {
+    	display: none !important;
+  	}
+
+  	.nav-pills > li {
+  		float: none;
+	}
+	.nav-pills > li + li {
+  		margin-top: 2px;
+  		margin-left: 0;
+	}
 }

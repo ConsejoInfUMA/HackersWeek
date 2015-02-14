@@ -31,7 +31,7 @@ TIME_STRIPE_CHOICES = (
     (5, '17:30'),
     (6, '18:30'),
 )
-TIME_STRIPE_CALENDAR_DISPLAY = (
+TIME_STRIPE_CALENDAR = (
     (1, '10:30 - 11:30'),
     (2, '11:30 - 12:30'),
     (3, '12:30 - 15:30'),
@@ -47,6 +47,13 @@ DURATION_CHOICES = (
 )
 
 DAY_CHOICES = (
+    (1, 'Lunes 23 de Marzo de 2015'),
+    (2, 'Martes 24 de Marzo de 2015'),
+    (3, 'Miércoles 25 de Marzo de 2015'),
+    (4, 'Jueves 26 de Marzo de 2015'),
+)
+
+DAY_CHOICES_CALENDAR = (
     (1, 'Lunes'),
     (2, 'Martes'),
     (3, 'Miércoles'),

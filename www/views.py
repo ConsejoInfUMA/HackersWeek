@@ -19,11 +19,18 @@ def home(request):
 	return render(request, 'home.html', context)
 
 #@check_if_user_has_profile
-def activity(request):
+def activity(request, slug):
 	"""
-	TODO: This function should displays each activity page
+	This function displays each activity page or redirect
+	home if the slug is not found
 	"""
 	context = {}
+
+	if not Event.objects.filter(slug=slug).exists():
+		return redirect('home')
+	else:
+		context.update({'event':Event.objects.get(slug=slug)})
+
 	return render(request, 'activity.html', context)
 
 def create_profile(request):
@@ -42,17 +49,18 @@ def calendar(request):
 	"""
 	response = {}
 	for day in DAY_CHOICES:
-		response.update({day[0]:{'day_name':day[1], 'day_no':day[0] ,'stripes':{}}})
+		response.update({day[0]:{'day_name':DAY_CHOICES_CALENDAR[day[0]-1][1], 'day_no':day[0] ,'stripes':{}}})
 		for stripe in TIME_STRIPE_CHOICES:
-			response[day[0]]['stripes'].update({stripe[0]:{'time':TIME_STRIPE_CALENDAR_DISPLAY[stripe[0]-1][1],'events':{}}})
+			response[day[0]]['stripes'].update({stripe[0]:{'time':TIME_STRIPE_CALENDAR[stripe[0]-1][1],'events':{}}})
 			for koe in KIND_OF_EVENT_CHOICES:
-				response[day[0]]['stripes'][stripe[0]]['events'].update({koe[0]:{'kind':koe[1],'data':{}}})
+				response[day[0]]['stripes'][stripe[0]]['events'].update({koe[0]:{'kind':koe[1],'empty':True}})
 
 
 	for event in Event.objects.all():
 		event_object = {'name':event.name,
-							'enr':True, # TODO: implement user enrolled in www.views.calendar
-							'url':'/actividad/cuda/' # TODO: implement activity urls in www.views.calendar
+						'enr':True, # TODO: implement user enrolled in www.views.calendar
+						'url':"/".join(['/actividad',event.slug,'']),
+						'empty':False
 						}
 		for time in event.time.all():
 			response[time.day]['stripes'][time.time_stripe]['events'][event.kind_of_event].update(event_object)
