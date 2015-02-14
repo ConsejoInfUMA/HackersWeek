@@ -109,6 +109,13 @@ footer{
 
 }
 
+/* form required */
+
+.form-group.required .control-label:after {
+  content:"*";
+  color:red;
+}
+
 .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
 	color: #FFF;
 	background-color: #0097B7;

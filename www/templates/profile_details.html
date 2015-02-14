@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block extra_head %}
+	
+{% endblock %}
+
+
+{% block content %}
+<div class="container" ng-app="profile_details">
+	<h1>Perfil de usuario</h1>
+	<form class="form-horizontal" style="margin: 45px auto;" method="POST" action="{% url 'profile_details' %}" ng-controller="FormController as FormCtrl" ng-init="FormCtrl.course = '{{ user_profile.course }}'; FormCtrl.auto_enroll = '{{user_profile.auto_enroll_all}}'">
+	{%csrf_token%}
+  	<div class="form-group">
+    	<label for="nombre" class="col-sm-2 control-label">Nombre</label>
+    	<div class="col-sm-10">
+      		<input id="nombre" name="first_name" type="text" value="{{user.first_name}}">
+    		</div>
+  	</div>
+
+  	<div class="form-group">
+    	<label for="apellidos" class="col-sm-2 control-label">Apellidos</label>
+    	<div class="col-sm-10">
+      		<input id="apellidos" name="last_name" type="text" value="{{user.last_name}}">
+    	</div>
+  	</div>
+
+   	<div class="form-group">
+    	<label for="dni" class="col-sm-2 control-label">DNI</label>
+    	<div class="col-sm-10">
+      		<input id="dni" name="dni" type="text" value="{{user_profile.dni}}">
+      		<span id="helpBlock" class="help-block">Los campos Nombre, Apellidos y DNI son sólo obligatorios para aquellos alumnos de la ETSI Informática que deseen obtener medio crédito por asistir a las conferencias.</span>
+    	</div>
+  	</div>
+  	<div class="form-group required">
+    	<label for="course" class="col-sm-2 control-label">Titulación</label>
+    	<div class="col-sm-10">
+		{% for course in course_choices %}
+		{# DIV class radio #}
+      		<div class="radio">
+			  <label>
+			    <input type="radio" ng-model="FormCtrl.course" name="course" id="course{{course.0}}" value="{{course.0}}" {% if forloop.first %}required{% endif %}>
+			    {{course.1}}
+			  </label>
+			</div>
+		{# DIV class radio #}
+		{% endfor %}
+    	</div>
+
+  	</div>
+    <div class="form-group" ng-show="FormCtrl.isETSII()">
+      <div class="col-sm-10 col-sm-push-2">
+        <span id="helpBlock" class="help-block">Al ser estudiante de la ETSI Informática, si asistes a todas las conferencias recibirás medio crédito. Si quieres, podemos inscribirte como asistente a todas las conferencias.</span>
+      </div>
+    </div>
+
+    <div class="form-group" ng-show="FormCtrl.isETSII()">
+      <label for="auto_enroll" class="col-sm-2 control-label">¿Inscribir en todas?</label>
+      <div class="col-sm-10">
+      <div class="radio">
+        <label>
+          <input type="radio" ng-model="FormCtrl.auto_enroll" name="auto_enroll" id="auto_enroll1" value="True">
+          Sí.
+        </label>
+      </div>
+
+      <div class="radio">
+        <label>
+          <input type="radio" ng-model="FormCtrl.auto_enroll" name="auto_enroll" id="auto_enroll0" value="False">
+          No.
+        </label>
+      </div>
+
+      </div>
+    </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-hackers">Guardar datos</button>
+    </div>
+  </div>
+</form>
+
+</div>
+{% endblock %}
+{% block extra_body %}
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
+<script type="text/javascript" src="{% static 'js/profile_details.js' %}"></script>
+{% endblock %}

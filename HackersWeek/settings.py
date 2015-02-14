@@ -29,9 +29,9 @@ ON_SERVER = socket.gethostname().startswith('hackers')
 SECRET_KEY = '6mnsu08)+hn+y_gtsjrm$ag!)()z16j(q7k066$hde(q+k94e2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = not ON_SERVER
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = not ON_SERVER
 
 ALLOWED_HOSTS = ['*']
 
