@@ -202,7 +202,7 @@ def calendar(request):
 
 	# We load the user events (if authenticated)
 	if request.user.is_authenticated():
-		user_events = request.user.events
+		user_events = request.user.events.all()
 	else:
 		user_events = []
 
