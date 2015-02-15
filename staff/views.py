@@ -10,7 +10,5 @@ def staff_home(request):
 	"""
 	
 	context = {'stats':get_stats()}
-	print context
-
 
 	return render(request, 'staff_home.html', context)
