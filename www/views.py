@@ -199,10 +199,17 @@ def calendar(request):
 
 	# We load the event variable with all confirmed events
 	events = Event.objects.all().filter(confirmed=True)
+
+	# We load the user events (if authenticated)
+	if request.user.is_authenticated():
+		user_events = request.user.events
+	else:
+		user_events = []
+
 	# And load the response with data from these events
 	for event in events:
 		event_object = {'name':event.name,
-						'enr':True, # TODO: implement user enrolled in www.views.calendar
+						'enr':event in user_events,
 						'url':"/".join(['/actividad',event.slug,'']),
 						'empty':False
 						}
