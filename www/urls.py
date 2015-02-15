@@ -6,6 +6,8 @@ urlpatterns = patterns('',
 	url(r'^$', views.home, name='home'),
 	url(r'^api/calendar/$', views.calendar, name='calendar'),
 	#url(r'^actividad/', views.activity, name='activity'),
+	url(r'^actividad/(?P<slug>[-\w\d]+)/inscribir/', views.enroll_in_activity, name='enroll_in_activity'),
+	url(r'^actividad/(?P<slug>[-\w\d]+)/eliminar-inscripcion/', views.kick_from_activity, name='kick_from_activity'),
 	url(r'^actividad/(?P<slug>[-\w\d]+)/', views.activity, name='activity'),
     url(r'^accounts/', views.profile_details, name='profile_details'),
 )

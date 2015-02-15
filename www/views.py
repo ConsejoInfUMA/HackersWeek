@@ -4,6 +4,7 @@ import json
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages import get_messages
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
@@ -29,14 +30,67 @@ def activity(request, slug):
 	"""
 	context = {}
 
-	#TODO: enrollment logic
-
 	if not Event.objects.filter(slug=slug).exists():
 		return redirect('home')
 	else:
-		context.update({'event':Event.objects.get(slug=slug)})
+
+		event = Event.objects.get(slug=slug)
+
+		#Here we choose button destination/messages
+		if request.user.is_authenticated():
+			if event in request.user.events.all():
+				enroll_btn = {	'class':'inscribed',
+								'link':''.join(['/actividad/',event.slug,'/eliminar-inscripcion/']),
+								'message':'Correctamente inscrito' }
+			else:
+				if event.enrollment_available():
+					enroll_btn = {	'class':'',
+									'link':''.join(['/actividad/',event.slug,'/inscribir/']),
+									'message':'Inscribir a la actividad' }
+				else:
+					enroll_btn = {	'class':'disabled',
+									'link':'',
+									'message':'Cupo completo' }
+		else:
+			enroll_btn = {	'class':'',
+							'link':''.join([reverse('account_login'),'?next=', request.path]),
+							'message':'Accede para inscribirte' }
+
+		context.update({'event':event, 
+						'enroll_btn':enroll_btn})
 
 	return render(request, 'activity.html', context)
+
+def enroll_in_activity(request, slug):
+	"""
+	Enrolls an user in a given activity
+	"""
+	if not Event.objects.filter(slug=slug).exists():
+		return redirect('home')
+	else:
+		event = Event.objects.get(slug=slug)
+		if not request.user.is_authenticated():
+			messages.error(request, ''.join(['Debes acceder para inscribirte a ', event.name ,'.']))
+		else:
+			if event.enroll_user(request.user):
+				messages.success(request, ''.join(['Correctamente inscrito a ', event.name ,'.']))
+			else:
+				messages.error(request, 'Ha habido un error con la inscripción, inténtalo de nuevo.')
+
+		return redirect(reverse('activity', args=[slug]))
+
+def kick_from_activity(request, slug):
+	"""
+	'Kicks' an user from a given activity
+	"""
+	if not Event.objects.filter(slug=slug).exists():
+		return redirect('home')
+	else:
+		if request.user.is_authenticated():
+			event = Event.objects.get(slug=slug)
+			event.kick_user(request.user)
+			#No messages here
+		return redirect(reverse('activity', args=[slug]))
 
 @login_required
 def profile_details(request):
@@ -53,7 +107,7 @@ def profile_details(request):
 
 		if 'next' in request.POST:
 			next = request.POST['next']
-			
+
 		#In order to edit the user profile details, there has to be an user xD
 		fields = ['first_name','last_name', 'dni', 'course', 'email']
 		if all(x in request.POST.keys() for x in fields):
@@ -89,6 +143,13 @@ def profile_details(request):
 			# And save them…
 			user.save()
 			user_profile.save()
+
+			# Afterwards, we enroll in all conferences if decided
+
+			if auto_enroll:
+				conferences = Event.objects.filter(kind_of_event='A')
+				for conference in conferences:
+					conference.enroll_user(user)
 
 			# Just before redirecting the user to the home page
 			messages.success(request, 'Perfil actualizado correctamente.')

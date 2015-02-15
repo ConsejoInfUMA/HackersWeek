@@ -37,7 +37,7 @@
   <div class="col-lg-4">
 
     <!-- TODO: implement inscription functionality -->
-    <button class="btn btn-hackers all-width disabled">Inscripciones cerradas aún</button>
+    <a href="{{enroll_btn.link}}"<button class="btn btn-hackers all-width {{enroll_btn.class}}">{{enroll_btn.message}}</button></a>
   </div>
 </div>
 
@@ -77,6 +77,20 @@ function initialize() {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+$(document).ready(function(){
+  $('.inscribed').hover(
+    function() {
+        var $this = $(this);
+        $this.data('initialText', $this.text());
+        $this.text("Eliminar inscripcción");
+    },
+    function() {
+        var $this = $(this); 
+        $this.text($this.data('initialText'));
+    }
+  );
+});
 
 </script>
 

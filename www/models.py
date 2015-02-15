@@ -44,7 +44,7 @@ class Event(models.Model):
 	"""
 	Model for an Event
 	"""
-	kind_of_event = models.CharField(max_length=1, choices=KIND_OF_EVENT_CHOICES, default='C')
+	kind_of_event = models.CharField(max_length=1, choices=KIND_OF_EVENT_CHOICES, default='A')
 	name = models.CharField(max_length=255)
 	speaker = models.CharField(max_length=255, blank=True, null=True)
 	company = models.CharField(max_length=255, blank=True, null=True)
@@ -55,6 +55,51 @@ class Event(models.Model):
 	capacity = models.IntegerField(max_length=4, blank=True, null=True)
 	slug = models.SlugField()
 	confirmed = models.BooleanField(default=True)
+	users_enrolled = models.ManyToManyField(User, blank=True, related_name='events')
+
+	def enrollment_available(self):
+		'''
+		Returns True if there are still vacancies
+		'''
+		if self.capacity == None:
+			return True
+		else:
+			return self.user_enrolled.count() < self.capacity
+
+	def enroll_user(self, user):
+		'''
+		Enrolls an user if enrollment_available()
+		'''
+		if self.enrollment_available() and isinstance(user, User):
+			self.users_enrolled.add(user) 
+			return True
+		else:
+			return False
+
+	def kick_user(self, user):
+		'''
+		Deletes an user enrollment
+		'''
+		self.users_enrolled.remove(user) 
+		return True
+
+	def save(self, *args, **kwargs):
+		'''
+		Save function overrided in order to enroll
+		users that chose auto_enroll_all in their profile
+
+		#TODO: use m2m_signals instead
+		
+		if self.kind_of_event == 'A':
+			auto_enroll_up = UserProfile.objects.filter(auto_enroll_all=True)
+			for up in auto_enroll_up:
+				self.users_enrolled.add(up.user)
+		'''
+
+		super(Event, self).save(*args, **kwargs)
 
 	def __unicode__(self):
 		return "<%s: %s>" % (self.get_kind_of_event_display(), self.name)
+
+
+

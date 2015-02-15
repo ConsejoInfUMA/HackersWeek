@@ -62,8 +62,10 @@ footer{
     background-color: #87AE2A;
 }
 
+
 .btn.btn-hackers.inscribed:hover{
     background-color: #CC1B1B;
+    
 }
 
 .btn.btn-hackers:disabled{
