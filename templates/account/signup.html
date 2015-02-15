@@ -7,22 +7,65 @@
 {% block hide_login %}{% endblock %}
 
 {% block content %}
-<div class="container" style="padding-top:100px; padding-bottom:150px;">
-<h1>{% trans "Registro" %}</h1>
 
-<p>{% blocktrans %}¿Tienes ya una cuenta? <a href="{{ login_url }}">Inicia sesión aquí</a>.{% endblocktrans %}</p>
+{% if form.errors %}
+    {% for error in form.non_field_errors %}
+    <div class="container-fluid text-center alert alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      {{ error|escape }}
+    </div>
+    {% endfor %}
+{% endif %}
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
+<div class="container" style="margin-top:80px; margin-bottom:60px;">
+  <div class="col-md-8 col-md-offset-2">
+
+
+  <div style="margin-top:20px; margin-bottom:20px">
+{% blocktrans %}¿Tienes ya una cuenta? <a href="{{ login_url }}">Inicia sesión aquí</a>.{% endblocktrans %}</div>
+
+
+      <form method="POST" action="{% url 'account_signup' %}">
+      {% csrf_token %}
+      {% if redirect_field_value %}
+  			<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  		{% endif %}
+        
+        <div class="form-group">
+          <label for="id_username">Usuario:</label>
+          <input class="form-control" autofocus="autofocus" required id="id_username" name="username" placeholder="Usuario" type="text">
+            {{ form.username.errors }}
+        </div>
+
+         <div class="form-group">
+          <label for="id_email">Email:</label>
+          <input class="form-control" autofocus="autofocus" id="id_email" name="email" placeholder="Email" type="email">
+            {{ form.email.errors }}
+        </div>
+
+        <div class="form-group">
+          <label for="id_password1">Contraseña:</label>
+          <input id="id_password1" class="form-control" required name="password1" placeholder="Contraseña" type="password">
+            {{ form.password1.errors }}
+        </div>
+
+        <div class="form-group">
+          <label for="id_password2">Contraseña (de nuevo):</label>
+          <input id="id_password2" class="form-control" required name="password2" placeholder="Contraseña" type="password">
+            {{ form.password2.errors }}
+        </div>
+
+        <div class="checkbox">
+          <label>
+             <input id="id_remember" name="remember" type="checkbox"> Recordarme
+          </label>
+        </div>
+        <button type="submit" class="btn btn-hackers">{% trans "Sign Up" %} &raquo;</button>
+        <p style="margin-top:15px">
+        </p>
+      </form>
+  </div>
 </div>
-
-
 {% endblock %}
 
 

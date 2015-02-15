@@ -121,6 +121,29 @@ footer{
 	background-color: #0097B7;
 }
 
+/* btn-facebook */
+
+.btn-facebook {
+    color: #FBFBFB;
+    background-color: #3B5998;
+    border-color: #3B5998;
+    border-radius: 0px;
+}
+
+.btn-facebook, .btn-facebook:hover {
+    color: #FBFBFB;
+    background-color: #3B5998;
+    border-color: #3B5998;
+}
+
+
+/* form control */
+
+.form-control{
+	border-radius: 0px;
+}
+
+
 @media screen and (max-width: 992px) {
 
 	.container{

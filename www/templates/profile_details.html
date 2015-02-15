@@ -12,6 +12,9 @@
 	<h1>Perfil de usuario</h1>
 	<form class="form-horizontal" style="margin: 45px auto;" method="POST" action="{% url 'profile_details' %}" ng-controller="FormController as FormCtrl" ng-init="FormCtrl.course = '{{ user_profile.course }}'; FormCtrl.auto_enroll = '{{user_profile.auto_enroll_all}}'">
 	{%csrf_token%}
+  {% if next %}
+  <input type="hidden" name="next" value="{{ next }}" />
+  {% endif %}
   	<div class="form-group">
     	<label for="nombre" class="col-sm-2 control-label">Nombre</label>
     	<div class="col-sm-10">

@@ -44,8 +44,16 @@ def profile_details(request):
 	TODO: This function should display a page to create a new
 	profile or edit the existing one
 	"""
+
 	context = {}
+
+	next = None
+
 	if request.method == 'POST':
+
+		if 'next' in request.POST:
+			next = request.POST['next']
+			
 		#In order to edit the user profile details, there has to be an user xD
 		fields = ['first_name','last_name', 'dni', 'course', 'email']
 		if all(x in request.POST.keys() for x in fields):
@@ -84,12 +92,21 @@ def profile_details(request):
 
 			# Just before redirecting the user to the home page
 			messages.success(request, 'Perfil actualizado correctamente.')
-			return redirect('home')
-
+			if next:
+				return redirect(next)
+			else:
+				return redirect('home')
+			
 		else:
 			messages.error(request, 'Falta alguno de los datos.')
 			return redirect('profile_details')
 	else:
+		# We find next var in request.GET
+		if 'next' in request.GET:
+			next = request.GET['next']
+
+		context.update({'next':next})
+
 		# We need to display the course choices in the template
 		if UserProfile.objects.filter(user=request.user).exists():
 			user_profile = UserProfile.objects.get(user=request.user)

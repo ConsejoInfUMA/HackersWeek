@@ -22,9 +22,9 @@
     <a href="{% url 'home' %}"><img id="hackers-week-logo" alt="Hackers Week" src="{% static 'img/hackers-week.png' %}"></a>
     {% block hide_login %}
       {% if user.is_authenticated %}
-        <a href="{% url 'account_logout' %}"><button id="btn-login" class="btn btn-hackers pull-right hidden-xs">Cerrar Sesión</button></a>
+        <a href="{% url 'account_logout' %}?next={{ request.path }}"><button id="btn-login" class="btn btn-hackers pull-right hidden-xs">Cerrar Sesión</button></a>
       {% else %}
-        <a href="{% url 'account_login' %}"><button id="btn-login" class="btn btn-hackers pull-right hidden-xs">Iniciar Sesión</button></a>
+        <a href="{% url 'account_login' %}?next={{ request.path }}"><button id="btn-login" class="btn btn-hackers pull-right hidden-xs">Iniciar Sesión</button></a>
       {% endif %}
     {% endblock %}
   </div>
@@ -32,9 +32,9 @@
 <div class="container-fluid aux-header">
 
     {% if user.is_authenticated %}
-        <a href="{% url 'account_logout' %}"><button id="btn-login" class="btn btn-hackers visible-xs">Cerrar Sesión</button></a>
+        <a href="{% url 'account_logout' %}?next={{ request.path }}"><button id="btn-login" class="btn btn-hackers visible-xs">Cerrar Sesión</button></a>
       {% else %}
-        <a href="{% url 'account_login' %}"><button id="btn-login" class="btn btn-hackers visible-xs">Iniciar Sesión</button></a>
+        <a href="{% url 'account_login' %}?next={{ request.path }}"><button id="btn-login" class="btn btn-hackers visible-xs">Iniciar Sesión</button></a>
     {% endif %}
   
 </div>
