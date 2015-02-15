@@ -29,9 +29,9 @@ ON_SERVER = socket.gethostname().startswith('hackers')
 SECRET_KEY = '6mnsu08)+hn+y_gtsjrm$ag!)()z16j(q7k066$hde(q+k94e2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = not ON_SERVER
+DEBUG = True
 
-TEMPLATE_DEBUG = not ON_SERVER
+TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -51,7 +51,7 @@ INSTALLED_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    #'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.twitter',
     # Installed www application
     'www'
 )
