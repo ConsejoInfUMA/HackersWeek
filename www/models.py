@@ -64,7 +64,7 @@ class Event(models.Model):
 		if self.capacity == None:
 			return True
 		else:
-			return self.user_enrolled.count() < self.capacity
+			return self.users_enrolled.count() < self.capacity
 
 	def enroll_user(self, user):
 		'''
