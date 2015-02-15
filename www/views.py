@@ -47,12 +47,13 @@ def profile_details(request):
 	context = {}
 	if request.method == 'POST':
 		#In order to edit the user profile details, there has to be an user xD
-		fields = ['first_name','last_name', 'dni', 'course']
+		fields = ['first_name','last_name', 'dni', 'course', 'email']
 		if all(x in request.POST.keys() for x in fields):
 
 			first_name = request.POST['first_name']
 			last_name = request.POST['last_name']
 			dni = request.POST['dni']
+			email = request.POST['email']
 			course = request.POST['course']
 
 			if 'auto_enroll' in request.POST:
@@ -71,6 +72,7 @@ def profile_details(request):
 			# Alter their fields
 			user.first_name = first_name
 			user.last_name = last_name
+			user.email = email
 
 			user_profile.dni = dni
 			user_profile.course = course

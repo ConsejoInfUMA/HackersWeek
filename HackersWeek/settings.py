@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.twitter',
     # Installed www application
     'www'
 )
@@ -138,6 +139,7 @@ SITE_ID = 1
 # Login URL
 
 LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_ON_GET = True
 
 # Required for editing the allauth templates
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
