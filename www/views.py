@@ -19,6 +19,8 @@ def home(request):
 	"""
 	This function displays the home page
 	"""
+	if request.user.is_staff:
+		messages.info(request, 'Puedes <a href="/staff/">acceder aquí</a> al área de Staff.')
 	context = {}
 	return render(request, 'home.html', context)
 

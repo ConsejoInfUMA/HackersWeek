@@ -54,7 +54,8 @@ INSTALLED_APPS = (
     #'allauth.socialaccount.providers.twitter',
     'allauth.socialaccount.providers.facebook',
     # Installed www application
-    'www'
+    'www',
+    'staff'
 )
 
 MIDDLEWARE_CLASSES = (

@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block extra_head %}
+
+{% endblock %}
+
+{% block head_title %} - STAFF Area{% endblock %}
+
+{% block content %}
+{% include '_staff_nav.html' with page='home' %}
+<div class="container text-center lead" style="min-height:400px;">
+<p style="font-size:35px;">¡{{stats.user_no}} usuario{{ stats.user_no|pluralize }} registrados!</p>
+<div class="row">
+	<div class="col-sm-6">
+		<div class="row">
+			<canvas id="fb-vs-nofb" width="300" height="300"/>
+		</div>
+		<div class="row">
+			<p>FB vs no-FB</p>
+		</div>
+		
+	</div> 
+	<div class="col-sm-6">
+		<div class="row">
+			<canvas id="courses" width="300" height="300"/>
+		</div>
+		<div class="row">
+			<p>University enrolment</p>
+		</div>
+		
+	</div>
+</div>
+
+	
+
+</div>
+
+{% endblock %}
+
+{% block extra_body %}
+<script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+<script type="text/javascript">
+
+	var colours = ['#CC66FF','#FFCC00','#0099FF','#FF0000','#996633','#FF0066','#8F8FB2','#006600','#0099CC','#CC6600'];
+	var highlights = ['#DB94FF','#FFE682','#82CDFF','#FF8080','#C2A385','#FF66A3','#B1B1C9','#4D944D','#33ADD6','#D68533'];
+	
+  var fb_vs_nofb = [
+      {
+          value: {{ stats.face_vs_noface.face }},
+          color:"#3B5998",
+          highlight: "#768BB7",
+          label: "Using Facebook"
+      },
+
+      {
+          value: {{ stats.face_vs_noface.no_face }},
+          color:"#DCDCDC",
+          highlight: "#EEEEEE",
+          label: "W/o Facebook"
+      },
+
+  ]
+
+  var courses = [
+  		{% for course, value in stats.courses.items %}
+  		{
+          value: {{value}},
+          color: colours[{{forloop.counter}}],
+          highlight: highlights[{{forloop.counter}}],
+          label: "{{course}}"
+     	 },
+  		{% endfor %}
+
+  ]
+
+  
+
+    window.onload = function(){
+        var ctx = document.getElementById("fb-vs-nofb").getContext("2d");
+        window.fb_vs_nofb_pie = new Chart(ctx).Pie(fb_vs_nofb);
+        
+        var ctx = document.getElementById("courses").getContext("2d");
+        window.courses_doughnut = new Chart(ctx).Doughnut(courses);
+     };
+</script>
+{% endblock %}
