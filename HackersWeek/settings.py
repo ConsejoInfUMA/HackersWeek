@@ -51,7 +51,7 @@ INSTALLED_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.twitter',
+    #'allauth.socialaccount.providers.twitter',
     'allauth.socialaccount.providers.facebook',
     # Installed www application
     'www'
