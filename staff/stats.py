@@ -33,9 +33,8 @@ def get_stats():
 
 	for i in range(delta.days + 1):
 		analysis_date = open_date + timedelta(days=i)
-		analysis_data = User.objects.filter(	date_joined__day=analysis_date.day,
-									date_joined__month=analysis_date.month,
-									date_joined__year=analysis_date.year).count()
+		analysis_date_plus_1 = analysis_date + timedelta(days=1)
+		analysis_data = User.objects.filter(date_joined__range=[analysis_date,analysis_date_plus_1]).count()
 		signups_per_day['labels'].append(analysis_date.strftime('%d/%b'))
 		signups_per_day['data'].append(analysis_data)
 
