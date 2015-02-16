@@ -124,8 +124,8 @@
   		{% for course, value in stats.courses.items %}
   		{
           value: {{value}},
-          color: colours[{{forloop.counter}}],
-          highlight: highlights[{{forloop.counter}}],
+          color: colours[{{forloop.counter0}}],
+          highlight: highlights[{{forloop.counter0}}],
           label: "{{course}}"
      	 },
   		{% endfor %}
