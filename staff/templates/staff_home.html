@@ -43,8 +43,54 @@
 		</div>
 	</div>
 </div>
+</div>
 
-	
+<div class="container">
+<h2 class="text-center">Conferences</h2>
+<table class="table table-striped">
+	<tr>
+		<th>Name</th>
+		<th>Speaker</th>
+		<th>Company</th>
+		<th class="text-center">Confirmed</th>
+		<th>Enrolments</th>
+	</tr>
+
+	{% for conference in conferences %}
+
+	<tr>
+		<td>{{ conference.name|truncatewords_html:5}}</td>
+		<td>{{ conference.speaker}}</td>
+		<td>{{ conference.company}}</td>
+		<td class="text-center"><span {% if conference.confirmed %}class="glyphicon glyphicon-ok" style="color:#7CFC00"{%else%}class="glyphicon glyphicon-remove" style="color:red"{%endif%}></td>
+		<td class="text-right">{{ conference.users_enrolled.count }}</td>
+	</tr>
+
+	{% endfor %}
+</table>
+
+<h2 class="text-center">Workshops</h2>
+<table class="table table-striped">
+	<tr>
+		<th>Name</th>
+		<th>Speaker</th>
+		<th>Company</th>
+		<th class="text-center">Confirmed</th>
+		<th>Enrolments</th>
+	</tr>
+
+	{% for workshop in workshops %}
+
+	<tr>
+		<td>{{ workshop.name|truncatewords_html:5}}</td>
+		<td>{{ workshop.speaker}}</td>
+		<td>{{ workshop.company}}</td>
+		<td class="text-center"><span {% if workshop.confirmed %}class="glyphicon glyphicon-ok" style="color:#7CFC00"{%else%}class="glyphicon glyphicon-remove" style="color:red"{%endif%}></td>
+		<td class="text-right">{{ workshop.users_enrolled.count }}</td>
+	</tr>
+
+	{% endfor %}
+</table>
 
 </div>
 
