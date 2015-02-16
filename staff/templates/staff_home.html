@@ -3,7 +3,6 @@
 {% load i18n %}
 
 {% block extra_head %}
-
 {% endblock %}
 
 {% block head_title %} - STAFF Area{% endblock %}
@@ -15,7 +14,7 @@
 <div class="row">
 	<div class="col-sm-6">
 		<div class="row">
-			<canvas id="fb-vs-nofb" width="300" height="300"/>
+			<canvas id="fb-vs-nofb" width="400" height="300"/>
 		</div>
 		<div class="row">
 			<p>FB vs no-FB</p>
@@ -24,7 +23,7 @@
 	</div> 
 	<div class="col-sm-6">
 		<div class="row">
-			<canvas id="courses" width="300" height="300"/>
+			<canvas id="courses" width="400" height="300"/>
 		</div>
 		<div class="row">
 			<p>University enrolment</p>
@@ -36,7 +35,7 @@
 <div class="row">
 	<div class="col-sm-12">
 		<div class="row">
-			<canvas id="signups_per_day" width="800" height="400"/>
+			<canvas id="signups_per_day" width="600" height="340"/>
 		</div>
 		<div class="row">
 			<p>Signups per day</p>
@@ -45,15 +44,15 @@
 </div>
 </div>
 
-<div class="container">
+<div class="container text-center">
 <h2 class="text-center">Conferences</h2>
 <table class="table table-striped">
 	<tr>
 		<th>Name</th>
 		<th>Speaker</th>
 		<th>Company</th>
-		<th class="text-center">Confirmed</th>
-		<th>Enrolments</th>
+		<th class="text-center">Conf.</th>
+		<th>Enr.</th>
 	</tr>
 
 	{% for conference in conferences %}
@@ -69,14 +68,33 @@
 	{% endfor %}
 </table>
 
+<div class="row">
+	<div class="col-sm-6">
+		<div class="row">
+			<p><strong>Conference enrolment</strong></p>
+		</div>
+		<div class="row">
+			<canvas id="conference_enrolment" width="400" height="300"/>
+		</div>	
+	</div> 
+	<div class="col-sm-6">
+		<div class="row">
+			<canvas id="workshop_enrolment" width="400" height="300"/>
+		</div>
+		<div class="row">
+			<p><strong>Workshop enrolment</strong></p>
+		</div>
+	</div>
+</div>
+
 <h2 class="text-center">Workshops</h2>
 <table class="table table-striped">
 	<tr>
 		<th>Name</th>
 		<th>Speaker</th>
 		<th>Company</th>
-		<th class="text-center">Confirmed</th>
-		<th>Enrolments</th>
+		<th class="text-center">Conf.</th>
+		<th>Enr.</th>
 	</tr>
 
 	{% for workshop in workshops %}
@@ -131,6 +149,31 @@
   		{% endfor %}
 
   ];
+  
+
+  var conference_enrolment = [
+  		{% for conference in conferences %}
+  		{
+          value: {{ conference.users_enrolled.count }},
+          color: colours[{{forloop.counter0}}],
+          highlight: highlights[{{forloop.counter0}}],
+          label: "{{ conference.name }}"
+     	 },
+  		{% endfor %}
+
+  ];
+
+  var workshop_enrolment = [
+  		{% for workshop in workshops %}
+  		{
+          value: {{ workshop.users_enrolled.count }},
+          color: colours[{{forloop.counter0}}],
+          highlight: highlights[{{forloop.counter0}}],
+          label: "{{ workshop.name }}"
+     	 },
+  		{% endfor %}
+
+  ];
 
   var signups_per_day = {
     labels: [{% for label in stats.signups_per_day.labels %}
@@ -164,6 +207,15 @@
 
         var ctx = document.getElementById("signups_per_day").getContext("2d");
 		window.signups_per_day_chart = new Chart(ctx).Line(signups_per_day);
+
+		var ctx = document.getElementById("conference_enrolment").getContext("2d");
+		window.conference_enrolment_chart = new Chart(ctx).PolarArea(conference_enrolment);
+
+		var ctx = document.getElementById("workshop_enrolment").getContext("2d");
+		window.workshop_enrolment_chart = new Chart(ctx).PolarArea(workshop_enrolment);
+
+		
+
 
      };
 </script>
