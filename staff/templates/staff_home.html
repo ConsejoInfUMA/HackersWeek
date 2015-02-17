@@ -11,6 +11,45 @@
 {% include '_staff_nav.html' with page='home' %}
 <div class="container text-center lead" style="min-height:400px;">
 <p style="font-size:35px;">¡{{stats.user_no}} usuario{{ stats.user_no|pluralize }} registrados!</p>
+
+
+{% if stats.google_analytics %}
+<div class="row">
+	<div class="col-md-6">
+		<div class="row">
+			<canvas id="signups_per_day" width="440" height="230"/>
+		</div>
+		<div class="row">
+			<p>Signups</p>
+		</div>
+		
+	</div> 
+	<div class="col-md-6">
+		<div class="row">
+			<canvas id="google_analytics" width="440" height="230"/>
+		</div>
+		<div class="row">
+			<p>Google Analytics: <strong style="color:rgb(220,220,220)">sessions</strong> vs <strong style="color:rgb(255,121,71)">users</strong></p>
+			
+		</div>
+		
+	</div>
+</div>
+
+{%else%}
+<div class="row">
+	<div class="col-md-12">
+		<div class="row">
+			<canvas id="signups_per_day" width="660" height="400"/>
+		</div>
+		<div class="row">
+			<p>Signups</p>
+		</div>
+		
+	</div> 
+</div>
+{% endif %}
+
 <div class="row">
 	<div class="col-sm-6">
 		<div class="row">
@@ -32,16 +71,6 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-sm-12">
-		<div class="row">
-			<canvas id="signups_per_day" width="600" height="340"/>
-		</div>
-		<div class="row">
-			<p>Signups per day</p>
-		</div>
-	</div>
-</div>
 </div>
 
 <div class="container text-center">
@@ -195,6 +224,43 @@
     ]
 	};
 
+	{% if stats.google_analytics %}
+
+	var google_analytics_data = {
+    labels: [{% for label in stats.signups_per_day.labels %}
+    "{{label}}",
+    {% endfor %}],
+    datasets: [     
+        {
+            label: "Google Analytics Sessions",
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: [{% for data in stats.google_analytics.sessions %}
+    		"{{data}}",
+    		{% endfor %}]
+        },
+        {
+            label: "Google Analytics Users",
+            fillColor: "rgba(255,143,102,0.2)",
+            strokeColor: "rgba(255,121,71,1)",
+            pointColor: "rgba(255,121,71,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)",
+            data: [{% for data in stats.google_analytics.users %}
+    		"{{data}}",
+    		{% endfor %}]
+        },
+        
+    ]
+	};
+
+	{% endif %}
+
 
   
 
@@ -207,6 +273,13 @@
 
         var ctx = document.getElementById("signups_per_day").getContext("2d");
 		window.signups_per_day_chart = new Chart(ctx).Line(signups_per_day);
+
+		{% if stats.google_analytics %}
+
+		var ctx = document.getElementById("google_analytics").getContext("2d");
+		window.signups_per_day_chart = new Chart(ctx).Line(google_analytics_data);
+
+		{% endif %}
 
 		var ctx = document.getElementById("conference_enrolment").getContext("2d");
 		window.conference_enrolment_chart = new Chart(ctx).PolarArea(conference_enrolment);
