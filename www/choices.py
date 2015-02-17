@@ -12,8 +12,9 @@ COURSE_CHOICES = (
     ('II', 'Ingeniería Informática (plan antiguo)'),
     ('ITS', 'Ingeniería Técnica Informática de Sistemas'),
     ('ITG', 'Ingeniería Técnica Informática de Gestión'),
+    ('DOC', 'Personal Docente (ETSI Informática)'),
     ('OTH', 'Otra Titulación'),
-    ('NOS', 'No soy estudiante de la UMA'),
+    ('NOS', 'No soy estudiante'),
 )
 
 KIND_OF_EVENT_CHOICES = (
