@@ -146,11 +146,19 @@ ACCOUNT_EMAIL_VERIFICATION = None
 
 # Required for editing the allauth templates
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
-
+# Required for centralized Statifiles Dir
 STATICFILES_DIRS = ( os.path.join(BASE_DIR, "static"),)
 
+# Message tags edition for Bootstrap
 MESSAGE_TAGS = {messages.DEBUG: 'debug',
                 messages.INFO: 'info',
                 messages.SUCCESS: 'success',
                 messages.WARNING: 'warning',
                 messages.ERROR: 'danger'}
+
+# Email Configurations
+#
+
+EMAIL_HOST = 'mail.hackersweek.com'
+EMAIL_HOST_USER = 'info@hackersweek.com'
+EMAIL_HOST_PASSWORD = 'h$hJb[p[ROF_'
