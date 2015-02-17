@@ -2,7 +2,14 @@
 {% load staticfiles %}
 {% load i18n %}
 
-{% block head_title %} - {{ event.name }} {% endblock %}
+{% block head_title %} - {{ event.name }}{% endblock %}
+
+{% block meta_description %}
+  <meta property="og:title" content="UMA Hackers Week - {{ event.name }}"/>
+  <meta name="twitter:title" content="UMA Hackers Week - {{ event.name }}" />
+  <meta name="twitter:description" content="{{ event.description }}" />
+  <meta property="og:description" name="description" content="{{ event.description }}">
+{% endblock %}
 
 {% block extra_head %}
 	<link rel="stylesheet" type="text/css" href="{% static 'css/activity.css' %}">

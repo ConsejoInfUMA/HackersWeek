@@ -3,6 +3,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}" />
+  <meta property="og:image" content="{% static 'img/escudo.png' %}"/>
+  <meta name="twitter:image" content="{% static 'img/escudo.png' %}" />
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@hackersweek" />
+  <meta name="author" content="Consejo de Estudiantes - ETSI Informática (UMA)">
+  <meta name="twitter:url" content="http://www.hackersweek.com{{ request.path }}" />
+  <meta property="og:url" content="http://www.hackersweek.com{{ request.path }}"/>
+  <meta name="keywords" content="hackersweek, desarrollo, desarrolladores, hackerweek, uma hackersweek, hackers, evento, ingeniería informática, informática, consejo de estudiantes, estudiantes, universidad, UDX, User Experience, Design, Málaga, UMA, ETSI, ETSII, ETSIIT, tecnología, conferencias, charlas, Sergio de los Santos, Rafa de la Torre, Enrique Rando, Francisco Vico, IAMUS, HTML5, Node.js, Django, Android, Angular">
+  {% block meta_description %}
+  <meta property="og:title" content="UMA Hackers Week"/>
+  <meta name="twitter:title" content="UMA Hackers Week" />
+  <meta name="twitter:description" content="Seguridad informática, programación, talleres prácticos, ¡y mucho más! No te pierdas el evento para estudiantes y desarrolladores en la Universidad de Málaga, abierto gratuitamente a todo el público, del 23 al 26 de marzo de 2015. Cuatro días cargados con las últimas tecnologías y los mejores ponentes: Sergio de los Santos (11Paths), Rafa de la Torre (Google), Enrique Rando, Francisco Vico..." />
+  <meta property="og:description" name="description" content="Seguridad informática, programación, talleres prácticos, ¡y mucho más! No te pierdas el evento para estudiantes y desarrolladores en la Universidad de Málaga, abierto gratuitamente a todo el público, del 23 al 26 de marzo de 2015. Cuatro días cargados con las últimas tecnologías y los mejores ponentes: Sergio de los Santos (11Paths), Rafa de la Torre (Google), Enrique Rando, Francisco Vico...">
+  {% endblock %}
   <meta charset="UTF-8">
   <title>UMA Hackers Week{% block head_title %}{% endblock %}</title>
   <meta name="viewport" content="width=device-width, user-scalable=no">
