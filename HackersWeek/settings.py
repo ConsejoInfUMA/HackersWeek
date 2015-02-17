@@ -33,7 +33,7 @@ DEBUG = not ON_SERVER
 
 TEMPLATE_DEBUG = not ON_SERVER
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.informatica.uma.es','.hackersweek.com', 'hackersweek.com']
 
 
 # Application definition
