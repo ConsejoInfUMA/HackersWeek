@@ -38,7 +38,11 @@ def activity(request, slug):
 
 		event = Event.objects.get(slug=slug)
 
-		#Here we choose button destination/messages
+		# Not confirmed events are only visible to staff
+		if not event.confirmed and not request.user.is_staff:
+			return redirect('home')
+
+		# Here we choose button destination/messages
 		if request.user.is_authenticated():
 			if event in request.user.events.all():
 				enroll_btn = {	'class':'inscribed',

@@ -77,20 +77,20 @@
 <h2 class="text-center">Conferences</h2>
 <table class="table table-striped">
 	<tr>
-		<th>Name</th>
-		<th>Speaker</th>
-		<th>Company</th>
+		<th class="text-center">Name</th>
+		<th class="text-center">Speaker</th>
+		<th class="text-center">Company</th>
 		<th class="text-center">Conf.</th>
-		<th>Enr.</th>
+		<th class="text-center">Enr.</th>
 	</tr>
 
 	{% for conference in conferences %}
 
 	<tr>
-		<td>{{ conference.name|truncatewords_html:5}}</td>
+		<td><a href="/actividad/{{ conference.slug }}/">{{ conference.name|truncatewords_html:5}}</a></td>
 		<td>{{ conference.speaker}}</td>
 		<td>{{ conference.company}}</td>
-		<td class="text-center"><span {% if conference.confirmed %}class="glyphicon glyphicon-ok" style="color:#7CFC00"{%else%}class="glyphicon glyphicon-remove" style="color:red"{%endif%}></td>
+		<td><span {% if conference.confirmed %}class="glyphicon glyphicon-ok" style="color:#7CFC00"{%else%}class="glyphicon glyphicon-remove" style="color:red"{%endif%}></td>
 		<td class="text-right">{{ conference.users_enrolled.count }}</td>
 	</tr>
 
@@ -119,20 +119,20 @@
 <h2 class="text-center">Workshops</h2>
 <table class="table table-striped">
 	<tr>
-		<th>Name</th>
-		<th>Speaker</th>
-		<th>Company</th>
+		<th class="text-center">Name</th>
+		<th class="text-center">Speaker</th>
+		<th class="text-center">Company</th>
 		<th class="text-center">Conf.</th>
-		<th>Enr.</th>
+		<th class="text-center">Enr.</th>
 	</tr>
 
 	{% for workshop in workshops %}
 
 	<tr>
-		<td>{{ workshop.name|truncatewords_html:5}}</td>
+		<td><a href="/actividad/{{ workshop.slug }}/">{{ workshop.name|truncatewords_html:5}}</a></td>
 		<td>{{ workshop.speaker}}</td>
 		<td>{{ workshop.company}}</td>
-		<td class="text-center"><span {% if workshop.confirmed %}class="glyphicon glyphicon-ok" style="color:#7CFC00"{%else%}class="glyphicon glyphicon-remove" style="color:red"{%endif%}></td>
+		<td><span {% if workshop.confirmed %}class="glyphicon glyphicon-ok" style="color:#7CFC00"{%else%}class="glyphicon glyphicon-remove" style="color:red"{%endif%}></td>
 		<td class="text-right">{{ workshop.users_enrolled.count }}</td>
 	</tr>
 
