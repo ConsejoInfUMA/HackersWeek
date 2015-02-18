@@ -227,3 +227,10 @@ def calendar(request):
 
 	
 	return HttpResponse(json.dumps(response), content_type="application/json")
+
+def error404(request):
+	"""
+	Ha! Ha! Ha!
+	Redirection al canting!
+	"""
+	return redirect('home')
