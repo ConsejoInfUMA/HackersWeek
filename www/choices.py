@@ -45,6 +45,7 @@ TIME_STRIPE_CALENDAR = (
 DURATION_CHOICES = (
     (1, '1 hora'),
     (2, '2 horas'),
+    (3, '3 horas'),
 )
 
 DAY_CHOICES = (

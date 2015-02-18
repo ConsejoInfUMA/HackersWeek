@@ -221,9 +221,12 @@ def calendar(request):
 						}
 		for time in event.time.all():
 			response[time.day]['stripes'][time.time_stripe]['events'][event.kind_of_event].update(event_object)
+			# TODO: next 2 ifs (in www.views.calendar) are hardcoded, find solution
 			if time.duration == 2:
-				# TODO: events duration in www.views.calendar is hardcoded, find solution
 				response[time.day]['stripes'][time.time_stripe+1]['events'][event.kind_of_event].update(event_object)
+			if time.duration == 3:
+				response[time.day]['stripes'][time.time_stripe+1]['events'][event.kind_of_event].update(event_object)
+				response[time.day]['stripes'][time.time_stripe+2]['events'][event.kind_of_event].update(event_object)
 
 	
 	return HttpResponse(json.dumps(response), content_type="application/json")
