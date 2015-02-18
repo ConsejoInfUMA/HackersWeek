@@ -54,7 +54,7 @@ def activity(request, slug):
 									'link':''.join(['/actividad/',event.slug,'/inscribir/']),
 									'message':'Inscribir a la actividad' }
 				else:
-					enroll_btn = {	'class':'disabled',
+					enroll_btn = {	'class':'',
 									'link':'',
 									'message':'Cupo completo' }
 		else:

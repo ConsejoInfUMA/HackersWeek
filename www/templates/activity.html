@@ -43,8 +43,11 @@
     </div>
   <div class="col-lg-4">
 
-
+    {% if enroll_btn.link %}
     <a href="{{enroll_btn.link}}"><button class="btn btn-hackers all-width {{enroll_btn.class}}">{{enroll_btn.message}}</button></a>
+    {% else %}
+    <button class="btn btn-hackers all-width" disabled>{{enroll_btn.message}}</button>
+    {% endif %}
   </div>
 </div>
 
