@@ -69,7 +69,7 @@ footer{
 }
 
 .btn.btn-hackers:disabled{
-    background-color: #C4C4C4;
+    background-color: #C4C4C4 !important;
 }
 
 #btn-login.btn-hackers:hover{
