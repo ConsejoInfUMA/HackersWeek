@@ -56,7 +56,7 @@ def activity(request, slug):
 				else:
 					enroll_btn = {	'class':'',
 									'link':'',
-									'message':'Cupo completo' }
+									'message':'Inscripción cerrada aún' }
 		else:
 			enroll_btn = {	'class':'',
 							'link':''.join([reverse('account_login'),'?next=', request.path]),
