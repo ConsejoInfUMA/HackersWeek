@@ -4,6 +4,7 @@ body{
 }
 
 #hackers-week-logo{
+
 	margin-top: 40px;
 }
 
@@ -12,6 +13,21 @@ header{
 	background-color: #192D35;
 	color: #E4E4E4
 }
+
+header .navbar {
+	margin: 0;
+	padding-top: 30px;
+}
+
+header .navbar-default {
+	background: none;
+	border: none;
+}
+
+#hackers-week-logo2{
+	margin-top: 10px;
+}
+
 
 .aux-header{
 	background-color: #0A455D;
@@ -39,19 +55,22 @@ footer{
 	text-align: right;
 }
 
-
 /* Boostrap Changes */
 
 .btn.btn-hackers{
 	border-radius: 0px;
 	border: 0px none;
-	background-color: #0097B7;
-	color: #FFF;
+	background-color: #0097B7!important;
+	color: #FFF!important;
 	text-align: center;
 	font-family: "Ruda",Arial,sans-serif;
 	font-size: inherit;
 	font-weight: normal;
 	font-style: normal;
+}
+
+.dropdown .btn.btn-hackers {
+	margin-left: 2px;
 }
 
 .btn.btn-hackers:hover{
@@ -65,7 +84,6 @@ footer{
 
 .btn.btn-hackers.inscribed:hover{
     background-color: #CC1B1B;
-    
 }
 
 .btn.btn-hackers:disabled{
@@ -78,6 +96,15 @@ footer{
 
 #btn-login{
 	margin-top: 40px;
+}
+
+.navbar-toggle {
+	background-color: #0097B7!important;
+	border: none!important;
+}
+
+.navbar-toggle .icon-bar {
+	background-color: #fff!important;
 }
 
 .alert{
@@ -182,7 +209,7 @@ footer{
     .uma-logo{
     	text-align: center;
     }
-    
+
     .hiddenxs {
     	display: none !important;
   	}
