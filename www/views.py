@@ -98,12 +98,14 @@ def kick_from_activity(request, slug):
 			#No messages here
 		return redirect(reverse('activity', args=[slug]))
 
-@login_required
 def profile_details(request):
 	"""
 	TODO: This function should display a page to create a new
 	profile or edit the existing one
 	"""
+	
+	if not request.user.is_authenticated():
+		return redirect('home')
 
 	context = {}
 
