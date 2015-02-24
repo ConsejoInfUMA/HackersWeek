@@ -103,7 +103,7 @@ def profile_details(request):
 	TODO: This function should display a page to create a new
 	profile or edit the existing one
 	"""
-	
+
 	if not request.user.is_authenticated():
 		return redirect('home')
 
@@ -233,9 +233,3 @@ def calendar(request):
 	
 	return HttpResponse(json.dumps(response), content_type="application/json")
 
-def error404(request):
-	"""
-	Ha! Ha! Ha!
-	Redirection al canting!
-	"""
-	return redirect('home')

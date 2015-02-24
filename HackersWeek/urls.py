@@ -12,5 +12,3 @@ urlpatterns = patterns('',
     url(r'^', include('www.urls')),
 
 )
-
-handler404 = 'www.views.error404'
