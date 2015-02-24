@@ -12,6 +12,5 @@ urlpatterns = patterns('',
 	url(r'^actividad/(?P<slug>[-\w\d]+)/', views.activity, name='activity'),
 	url(r'^actividad/', lambda x: redirect('home')),
     url(r'^accounts/', views.profile_details, name='profile_details'),
-    url(r'^404/', views.error404, name='profile_details'),
 )
 
