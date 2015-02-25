@@ -35,8 +35,13 @@ footer{
 	margin-bottom: 25px;
 }
 
-.uma-logo{
+.organizer-logos{
 	text-align: right;
+}
+
+.organizer-logos img.gdg{
+	margin-left: 25px;
+	border-radius: 3px;
 }
 
 
@@ -151,6 +156,14 @@ footer{
 	.container{
 		padding-left: 70px;
 		padding-right: 70px;
+	}
+
+	.organizer-logos img{
+		margin:10px auto;
+	}
+
+	footer .container .row .col-md-4{
+		text-align: center;
 	}
 
 }
