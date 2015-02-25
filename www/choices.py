@@ -8,7 +8,7 @@ COURSE_CHOICES = (
     ('GII', 'Grado en Ingeniería Informática'),
     ('GIS', 'Grado en Ingeniería del Software'),
     ('GIC', 'Grado en Ingeniería de Computadores'),
-    ('GISa', 'Grado en Ingeniería de la Salud'),
+    ('GIa', 'Grado en Ingeniería de la Salud'),
     ('II', 'Ingeniería Informática (plan antiguo)'),
     ('ITS', 'Ingeniería Técnica Informática de Sistemas'),
     ('ITG', 'Ingeniería Técnica Informática de Gestión'),
