@@ -15,3 +15,13 @@ def staff_home(request):
 				'workshops':Event.objects.filter(kind_of_event='B')}
 
 	return render(request, 'staff_home.html', context)
+
+@check_is_staff
+def attendance(request):
+	"""
+	Attendance monitoring
+	"""
+	
+	context = {	}
+
+	return render(request, 'attendance.html', context)

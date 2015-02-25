@@ -15,6 +15,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li{% if page == 'home' %} class="active"{% endif %}><a href="{% url 'staff_home' %}">Home</a></li>
+        <li{% if page == 'attendance' %} class="active"{% endif %}><a href="{% url 'attendance' %}">Attendance</a></li>
         <!--
         <li{% if page == 'attendance' %} class="active"{% endif %}><a href="#">Attendance</a></li>
         <li class="dropdown">
