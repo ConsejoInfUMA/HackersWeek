@@ -75,7 +75,8 @@
 
 <div class="container text-center">
 <h2 class="text-center">Conferences</h2>
-<table class="table table-striped">
+<table class="table table-striped" id="confe-table">
+	<thead> 
 	<tr>
 		<th class="text-center">Name</th>
 		<th class="text-center">Speaker</th>
@@ -83,7 +84,8 @@
 		<th class="text-center">Conf.</th>
 		<th class="text-center">Enr.</th>
 	</tr>
-
+	</thead>
+	<tbody>
 	{% for conference in conferences %}
 
 	<tr>
@@ -95,6 +97,7 @@
 	</tr>
 
 	{% endfor %}
+	</tbody>
 </table>
 
 <div class="row">
@@ -117,7 +120,8 @@
 </div>
 
 <h2 class="text-center">Workshops</h2>
-<table class="table table-striped">
+<table class="table table-striped" id="works-table">
+	<thead>
 	<tr>
 		<th class="text-center">Name</th>
 		<th class="text-center">Speaker</th>
@@ -125,7 +129,8 @@
 		<th class="text-center">Conf.</th>
 		<th class="text-center">Enr.</th>
 	</tr>
-
+	</thead>
+	<tbody>
 	{% for workshop in workshops %}
 
 	<tr>
@@ -137,6 +142,7 @@
 	</tr>
 
 	{% endfor %}
+	</tbody>
 </table>
 
 </div>
@@ -145,6 +151,7 @@
 
 {% block extra_body %}
 <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.tablesorter.min.js' %}"></script>
 <script type="text/javascript">
 
 	var colours = ['#0099CC','#FD971F','#66D9EF','#FFCC00','#0099FF','#A6E22E','#F92672','#FF0066','#8F8FB2','#006600'];
@@ -291,5 +298,19 @@
 
 
      };
+
+
+	$(document).ready(function(){ 
+	    $("#confe-table").tablesorter({ 
+        	// sort on the first column and third column, order asc 
+        	sortList: [[4,1]] 
+    		}); 
+	    $("#works-table").tablesorter({ 
+        	// sort on the first column and third column, order asc 
+        	sortList: [[4,1]] 
+    		}); 
+	    }); 
+    
+
 </script>
 {% endblock %}
