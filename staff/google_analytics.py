@@ -125,6 +125,7 @@ def get_google_analytics_data():
 
 		try:
 			sessions_and_users = get_sessions_and_users(service, HACKERS_PROFILE_ID)
+			print sessions_and_users
 
 			sessions_list = []
 			users_list = [] 
@@ -144,11 +145,11 @@ def get_google_analytics_data():
 	return reply
 
 def get_sessions_and_users(service, profile_id):
-	today = datetime.today().date()
 	return service.data().ga().get(
 	ids='ga:' + HACKERS_PROFILE_ID,
 	start_date='2015-02-13',
-	end_date=today.strftime('%Y-%m-%d'),
+	end_date='today',
+	sort='ga:year,ga:month,ga:day',
 	metrics='ga:sessions,ga:users',
 	dimensions='ga:day,ga:month,ga:year', #ga:year
 	max_results='365').execute()
