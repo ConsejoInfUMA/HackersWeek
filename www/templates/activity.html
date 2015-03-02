@@ -27,7 +27,7 @@
 
 {% if event.instructions %}
 <p class="description">
-{{ event.instructions }}
+{{ event.instructions | safe }}
 </p>
 {% endif %}
 
