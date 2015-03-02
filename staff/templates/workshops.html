@@ -33,7 +33,7 @@
 		<td>{{ event.speaker}}</td>
 		<td>{{ event.company}}</td>
 		<td><span {% if event.confirmed %}class="glyphicon glyphicon-ok" style="color:#7CFC00"{%else%}class="glyphicon glyphicon-remove" style="color:red"{%endif%}></td>
-		<td class="text-right">{{ event.users_enrolled.count }}</td>
+		<td class="text-right">{{ event.users_enrolled.count }}/<strong>{{ event.capacity }}</strong></td>
 	</tr>
 
 	{% endfor %}

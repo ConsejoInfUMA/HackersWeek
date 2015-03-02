@@ -19,8 +19,7 @@
 	<thead> 
 	<tr>
 		<th class="text-center">Name</th>
-		<th class="text-center">Speaker</th>
-		<th class="text-center">Company</th>
+		<th class="text-center">Platform</th>
 		<th class="text-center">Conf.</th>
 		<th class="text-center">Enr.</th>
 	</tr>
@@ -30,10 +29,9 @@
 
 	<tr>
 		<td><a href="/actividad/{{ event.slug }}/">{{ event.name|truncatewords_html:5}}</a></td>
-		<td>{{ event.speaker}}</td>
 		<td>{{ event.company}}</td>
 		<td><span {% if event.confirmed %}class="glyphicon glyphicon-ok" style="color:#7CFC00"{%else%}class="glyphicon glyphicon-remove" style="color:red"{%endif%}></td>
-		<td class="text-right">{{ event.users_enrolled.count }}</td>
+		<td class="text-right">{{ event.users_enrolled.count }}/<strong>{{ event.capacity }}</strong></td>
 	</tr>
 
 	{% endfor %}
