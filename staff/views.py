@@ -48,7 +48,7 @@ def misc(request):
 	"""
 	Misc Stats view
 	"""
-	context = {'events':Event.objects.filter(kind_of_event='C')}
+	context = {'events':Event.objects.filter(kind_of_event='D')}
 
 	return render(request, 'misc.html', context)
 

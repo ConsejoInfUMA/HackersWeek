@@ -21,6 +21,7 @@
 		<th class="text-center">Name</th>
 		<th class="text-center">Platform</th>
 		<th class="text-center">Conf.</th>
+		<th class="text-center">Open?</th>
 		<th class="text-center">Enr.</th>
 	</tr>
 	</thead>
@@ -31,6 +32,7 @@
 		<td><a href="/actividad/{{ event.slug }}/">{{ event.name|truncatewords_html:5}}</a></td>
 		<td>{{ event.company}}</td>
 		<td><span {% if event.confirmed %}class="glyphicon glyphicon-ok" style="color:#7CFC00"{%else%}class="glyphicon glyphicon-remove" style="color:red"{%endif%}></td>
+		<td><span {% if event.capacity == 0 %}class="glyphicon glyphicon-remove" style="color:red"{%else%}class="glyphicon glyphicon-ok" style="color:#7CFC00"{%endif%}></td>
 		<td class="text-right">{{ event.users_enrolled.count }}/<strong>{{ event.capacity }}</strong></td>
 	</tr>
 
