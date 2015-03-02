@@ -17,6 +17,42 @@ def staff_home(request):
 	return render(request, 'staff_home.html', context)
 
 @check_is_staff
+def conferences(request):
+	"""
+	Conference Stats view
+	"""
+	context = {'events':Event.objects.filter(kind_of_event='A')}
+
+	return render(request, 'conferences.html', context)
+
+@check_is_staff
+def workshops(request):
+	"""
+	Workshop Stats view
+	"""
+	context = {'events':Event.objects.filter(kind_of_event='B')}
+
+	return render(request, 'workshops.html', context)
+
+@check_is_staff
+def games(request):
+	"""
+	Games Stats view
+	"""
+	context = {'events':Event.objects.filter(kind_of_event='C')}
+
+	return render(request, 'games.html', context)
+
+@check_is_staff
+def misc(request):
+	"""
+	Misc Stats view
+	"""
+	context = {'events':Event.objects.filter(kind_of_event='C')}
+
+	return render(request, 'misc.html', context)
+
+@check_is_staff
 def attendance(request):
 	"""
 	Attendance monitoring

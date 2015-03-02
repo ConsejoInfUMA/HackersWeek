@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block extra_head %}
+{% endblock %}
+
+{% block head_title %} - Misc Stats{% endblock %}
+
+{% block content %}
+{% include '_staff_nav.html' with page='misc' %}
+
+<div class="container-fluid text-center lead" style="min-height:400px;">
+
+
+<div class="container text-center">
+<h2 class="text-center">Misc Stats</h2>
+<table class="table table-striped" id="event-table">
+	<thead> 
+	<tr>
+		<th class="text-center">Name</th>
+		<th class="text-center">Speaker</th>
+		<th class="text-center">Company</th>
+		<th class="text-center">Conf.</th>
+		<th class="text-center">Enr.</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% for event in events %}
+
+	<tr>
+		<td><a href="/actividad/{{ event.slug }}/">{{ event.name|truncatewords_html:5}}</a></td>
+		<td>{{ event.speaker}}</td>
+		<td>{{ event.company}}</td>
+		<td><span {% if event.confirmed %}class="glyphicon glyphicon-ok" style="color:#7CFC00"{%else%}class="glyphicon glyphicon-remove" style="color:red"{%endif%}></td>
+		<td class="text-right">{{ event.users_enrolled.count }}</td>
+	</tr>
+
+	{% endfor %}
+	</tbody>
+</table>
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		<div class="row">
+			<p><strong>Misc enrolment</strong></p>
+		</div>
+		<div class="row">
+			<canvas id="event_enrolment" width="400" height="300"/>
+		</div>	
+	</div> 
+</div>
+
+</div>
+
+
+
+{% endblock %}
+
+{% block extra_body %}
+<script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.tablesorter.min.js' %}"></script>
+<script type="text/javascript">
+
+	var colours = ['#0099CC','#FD971F','#66D9EF','#FFCC00','#0099FF','#A6E22E','#F92672','#FF0066','#8F8FB2','#006600'];
+	var highlights = ['#33ADD6','#FDAC4C','#85E1F2','#FFE682','#82CDFF','#B8E858','#FA518E','#FF66A3','#B1B1C9','#4D944D'];
+	
+
+  var event_enrolment = [
+  		{% for event in events %}
+  		{
+          value: {{ event.users_enrolled.count }},
+          color: colours[{{forloop.counter0}}],
+          highlight: highlights[{{forloop.counter0}}],
+          label: "{{ event.name }}"
+     	 },
+  		{% endfor %}
+
+  ];
+
+ 
+
+
+  
+
+    window.onload = function(){
+		var ctx = document.getElementById("event_enrolment").getContext("2d");
+		window.event_enrolment_chart = new Chart(ctx).PolarArea(event_enrolment);
+
+     };
+
+
+	$(document).ready(function(){ 
+	    $("#event-table").tablesorter({ 
+        	// sort on the first column and third column, order asc 
+        	sortList: [[4,1]] 
+    		}); 
+	    }); 
+    
+
+</script>
+{% endblock %}
