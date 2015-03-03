@@ -173,9 +173,10 @@ def runApriori(data_iter, minSupport, minConfidence):
 def get_results(items, rules):
 	"""prints the generated itemsets and the confidence rules"""
 	k=[]
+	k.append("\n------------------------ ITEMS - support:")
 	for item, support in items:
 		k.append("item: %s , %.3f" % (str(item), support))
-	k.append("\n------------------------ RULES:")
+	k.append("\n------------------------ RULES - confidence:")
 	for rule, confidence in rules:
 		pre, post = rule
 		k.append("Rule: %s ==> %s , %.3f" % (str(pre), str(post), confidence))
