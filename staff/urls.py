@@ -8,6 +8,7 @@ urlpatterns = patterns('',
 	url(r'^workshops/$', views.workshops, name='workshops'),
 	url(r'^games/$', views.games, name='games'),
 	url(r'^misc/$', views.misc, name='misc'),
+	url(r'^mba/$', views.mba, name='mba'),
 	url(r'^attendance/$', views.attendance, name='attendance'),
 )
 

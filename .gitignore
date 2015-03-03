@@ -5,3 +5,4 @@ db.sqlite3
 /www/migrations
 /staff/migrations
 /venv/
+/scripts/

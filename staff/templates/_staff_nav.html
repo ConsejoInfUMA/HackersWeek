@@ -21,8 +21,9 @@
             <li><a href="{% url 'conferences' %}">Conferences</a></li>
             <li><a href="{% url 'workshops' %}">Workshops</a></li>
             <li><a href="{% url 'games' %}">Games</a></li>
-            <li class="divider"></li>
             <li><a href="{% url 'misc' %}">Miscelanea</a></li>
+            <li class="divider"></li>
+            <li><a href="{% url 'mba' %}">Market Basket Analysis</a></li>
           </ul>
         </li>
         <li{% if page == 'attendance' %} class="active"{% endif %}><a href="{% url 'attendance' %}">Attendance</a></li>

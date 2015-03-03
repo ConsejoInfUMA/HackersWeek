@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block extra_head %}
+{% endblock %}
+
+{% block head_title %} - Market Basket Analysis{% endblock %}
+
+{% block content %}
+{% include '_staff_nav.html' with page='mba' %}
+
+<div class="container-fluid text-center lead" style="min-height:400px;">
+
+<div class="container text-center">
+<h2 class="text-center">Market Basket Analysis</h2>
+
+<pre class="text-left">{{mba}}</pre>
+</div>
+</div>
+
+
+
+{% endblock %}

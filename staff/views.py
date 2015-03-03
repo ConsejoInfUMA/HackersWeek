@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .decorators import check_is_staff
-from .stats import get_stats
+from .stats import get_stats, apriori
 from www.models import *
 
 
@@ -51,6 +51,16 @@ def misc(request):
 	context = {'events':Event.objects.filter(kind_of_event='D')}
 
 	return render(request, 'misc.html', context)
+
+@check_is_staff
+def mba(request):
+	"""
+	Market Basket Analysis view
+	"""
+	context = {'mba':apriori()}
+
+	return render(request, 'mba.html', context)
+
 
 @check_is_staff
 def attendance(request):

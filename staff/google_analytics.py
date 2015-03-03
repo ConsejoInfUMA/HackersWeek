@@ -125,7 +125,6 @@ def get_google_analytics_data():
 
 		try:
 			sessions_and_users = get_sessions_and_users(service, HACKERS_PROFILE_ID)
-			print sessions_and_users
 
 			sessions_list = []
 			users_list = [] 
