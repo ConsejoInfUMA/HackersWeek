@@ -5,6 +5,7 @@ from www.choices import *
 from datetime import datetime, date, timedelta
 from itertools import chain, combinations
 from collections import defaultdict
+from models import StaffDictionary
 
 from google_analytics import get_google_analytics_data
 
@@ -58,7 +59,23 @@ def get_stats():
 	return stats
 
 def apriori():
-	items, rules = runApriori(get_mba_sets(), 0.1, 0.6)
+	'''
+	Apriori algorithm for MBA, from https://github.com/asaini/Apriori/
+
+	Support & Confidence can be set-up in the admin panel
+	'''
+	try:
+		min_support = StaffDictionary.objects.get(key="min_support").value
+		min_confidence = StaffDictionary.objects.get(key="min_confidence").value
+	except:
+		a = StaffDictionary(key='min_support', value=0.1)
+		b = StaffDictionary(key='min_confidence', value=0.6)
+		a.save()
+		b.save()
+		min_support = 0.1
+		min_confidence = 0.6
+
+	items, rules = runApriori(get_mba_sets(), 0.1, 0.8)
 	return get_results(items, rules)
 
 
