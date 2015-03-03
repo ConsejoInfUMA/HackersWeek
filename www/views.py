@@ -233,3 +233,16 @@ def calendar(request):
 	
 	return HttpResponse(json.dumps(response), content_type="application/json")
 
+def sitemap(request):
+
+	sitemap = ['<?xml version="1.0" encoding="UTF-8"?>',
+	'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">',
+	'<url><loc>http://www.hackersweek.com/</loc><changefreq>weekly</changefreq><priority>1.00</priority></url>',
+	'<url><loc>http://www.hackersweek.com/accounts/login/</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>']
+
+	for e in Event.objects.all().filter(confirmed=True):
+		sitemap.append('<url><loc>http://www.hackersweek.com/actividad/' +e.slug+ '/</loc><changefreq>weekly</changefreq><priority>0.90</priority></url>')
+
+	sitemap.append('</urlset>')
+	return HttpResponse('\n'.join(sitemap), content_type="text/xml; charset=utf-8")
+
