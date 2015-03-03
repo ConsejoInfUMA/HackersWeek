@@ -3,6 +3,14 @@
 {% load i18n %}
 
 {% block extra_head %}
+<style type="text/css">
+	
+	canvas{
+		width: 100% !important;
+		max-width: 450px;
+		height: auto !important;
+	}
+</style>
 {% endblock %}
 
 {% block head_title %} - Misc Stats{% endblock %}
@@ -29,9 +37,9 @@
 	<thead> 
 	<tr>
 		<th class="text-center">Name</th>
-		<th class="text-center">Speaker</th>
-		<th class="text-center">Company</th>
-		<th class="text-center">Conf.</th>
+		<th class="text-center hidden-xs">Speaker</th>
+		<th class="text-center hidden-xs">Company</th>
+		<th class="text-center hidden-xs">Conf.</th>
 		<th class="text-center">Enr.</th>
 	</tr>
 	</thead>
@@ -40,9 +48,9 @@
 
 	<tr>
 		<td><a href="/actividad/{{ event.slug }}/">{{ event.name|truncatewords_html:5}}</a></td>
-		<td>{{ event.speaker}}</td>
-		<td>{{ event.company}}</td>
-		<td><span {% if event.confirmed %}class="glyphicon glyphicon-ok" style="color:#7CFC00"{%else%}class="glyphicon glyphicon-remove" style="color:red"{%endif%}></td>
+		<td class="hidden-xs">{{ event.speaker}}</td>
+		<td class="hidden-xs">{{ event.company}}</td>
+		<td class="hidden-xs"><span {% if event.confirmed %}class="glyphicon glyphicon-ok" style="color:#7CFC00"{%else%}class="glyphicon glyphicon-remove" style="color:red"{%endif%}></td>
 		<td class="text-right">{{ event.users_enrolled.count }}</td>
 	</tr>
 

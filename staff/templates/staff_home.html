@@ -3,6 +3,14 @@
 {% load i18n %}
 
 {% block extra_head %}
+<style type="text/css">
+	
+	canvas{
+		width: 100% !important;
+		max-width: 450px;
+		height: auto !important;
+	}
+</style>
 {% endblock %}
 
 {% block head_title %} - STAFF Area{% endblock %}
@@ -79,9 +87,9 @@
 	<thead> 
 	<tr>
 		<th class="text-center">Name</th>
-		<th class="text-center">Speaker</th>
-		<th class="text-center">Company</th>
-		<th class="text-center">Conf.</th>
+		<th class="text-center hidden-xs">Speaker</th>
+		<th class="text-center hidden-xs">Company</th>
+		<th class="text-center hidden-xs">Conf.</th>
 		<th class="text-center">Enr.</th>
 	</tr>
 	</thead>
@@ -90,9 +98,9 @@
 
 	<tr>
 		<td><a href="/actividad/{{ conference.slug }}/">{{ conference.name|truncatewords_html:5}}</a></td>
-		<td>{{ conference.speaker}}</td>
-		<td>{{ conference.company}}</td>
-		<td><span {% if conference.confirmed %}class="glyphicon glyphicon-ok" style="color:#7CFC00"{%else%}class="glyphicon glyphicon-remove" style="color:red"{%endif%}></td>
+		<td class='hidden-xs'>{{ conference.speaker}}</td>
+		<td class='hidden-xs'>{{ conference.company}}</td>
+		<td class='hidden-xs'><span {% if conference.confirmed %}class="glyphicon glyphicon-ok" style="color:#7CFC00"{%else%}class="glyphicon glyphicon-remove" style="color:red"{%endif%}></td>
 		<td class="text-right">{{ conference.users_enrolled.count }}</td>
 	</tr>
 
@@ -124,9 +132,9 @@
 	<thead>
 	<tr>
 		<th class="text-center">Name</th>
-		<th class="text-center">Speaker</th>
-		<th class="text-center">Company</th>
-		<th class="text-center">Conf.</th>
+		<th class="text-center hidden-xs">Speaker</th>
+		<th class="text-center hidden-xs">Company</th>
+		<th class="text-center hidden-xs">Conf.</th>
 		<th class="text-center">Enr.</th>
 	</tr>
 	</thead>
@@ -135,9 +143,9 @@
 
 	<tr>
 		<td><a href="/actividad/{{ workshop.slug }}/">{{ workshop.name|truncatewords_html:5}}</a></td>
-		<td>{{ workshop.speaker}}</td>
-		<td>{{ workshop.company}}</td>
-		<td><span {% if workshop.confirmed %}class="glyphicon glyphicon-ok" style="color:#7CFC00"{%else%}class="glyphicon glyphicon-remove" style="color:red"{%endif%}></td>
+		<td class="hidden-xs">{{ workshop.speaker}}</td>
+		<td class="hidden-xs">{{ workshop.company}}</td>
+		<td class="hidden-xs"><span {% if workshop.confirmed %}class="glyphicon glyphicon-ok" style="color:#7CFC00"{%else%}class="glyphicon glyphicon-remove" style="color:red"{%endif%}></td>
 		<td class="text-right">{{ workshop.users_enrolled.count }}</td>
 	</tr>
 
