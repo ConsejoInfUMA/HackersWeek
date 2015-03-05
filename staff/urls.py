@@ -9,6 +9,7 @@ urlpatterns = patterns('',
 	url(r'^games/$', views.games, name='games'),
 	url(r'^misc/$', views.misc, name='misc'),
 	url(r'^mba/$', views.mba, name='mba'),
+	url(r'^facebook/$', views.facebook, name='facebook'),
 	url(r'^attendance/$', views.attendance, name='attendance'),
 )
 

@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block extra_head %}
+<style type="text/css">
+	
+	#conference_enrolment{
+		width: 100% !important;
+		max-width: 200px;
+		height: auto !important;
+	}
+</style>
+{% endblock %}
+
+{% block head_title %} - Facebook Stats{% endblock %}
+
+{% block content %}
+{% include '_staff_nav.html' with page='facebook' %}
+
+<div class="container text-center lead" style="min-height:400px;">
+<h2 class="text-center">Facebook Stats</h2>
+<p><strong>Facebook login usage by Course</strong></p>
+
+<div class="row">
+	{% for key, stat in fb_stats.items %}
+	<div class="col-sm-4" style="margin-top:25px">
+		<div class="row">
+			<canvas id="{{key}}_stat" width="200" height="200"/>	
+		</div>
+		<div class="row">
+			{{stat.name}}
+		</div>
+	</div>
+{% if forloop.counter|divisibleby:3 %}
+</div>
+<div class="row">
+{% endif %}
+	{% endfor %}
+</div>
+
+<div class="container text-center">
+
+
+</div>
+
+</div>
+
+
+{% endblock %}
+
+{% block extra_body %}
+<script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.tablesorter.min.js' %}"></script>
+<script type="text/javascript">
+
+	var colours = ['#0099CC','#FD971F','#66D9EF','#FFCC00','#0099FF','#A6E22E','#F92672','#FF0066','#8F8FB2','#006600'];
+	var highlights = ['#33ADD6','#FDAC4C','#85E1F2','#FFE682','#82CDFF','#B8E858','#FA518E','#FF66A3','#B1B1C9','#4D944D'];
+	
+
+
+  		{% for key, stat in fb_stats.items %}
+
+  		  var {{key}}_chart_data = [
+  		  		{
+          value: {{stat.fb}},
+          color:"#3B5998",
+          highlight: "#768BB7",
+          label: "Using Facebook"
+      },
+
+      {
+          value: {{stat.no_fb}},
+          color:"#DCDCDC",
+          highlight: "#EEEEEE",
+          label: "W/o Facebook"
+      },
+    	
+    	  ];
+		{% endfor %}
+
+
+
+ 
+
+
+  
+
+    window.onload = function(){
+    	
+    	{% for key, stat in fb_stats.items %}
+    	var ctx = document.getElementById("{{key}}_stat").getContext("2d");
+		window.{{key}}_chart = new Chart(ctx).Pie({{key}}_chart_data);
+		{% endfor %}
+		
+
+     };
+
+
+    
+
+</script>
+{% endblock %}

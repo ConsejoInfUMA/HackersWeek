@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .decorators import check_is_staff
-from .stats import get_stats, apriori
+from .stats import get_stats, get_fb_stats, apriori
 from www.models import *
 
 
@@ -15,6 +15,15 @@ def staff_home(request):
 				'workshops':Event.objects.filter(kind_of_event='B')}
 
 	return render(request, 'staff_home.html', context)
+
+@check_is_staff
+def facebook(request):
+	"""
+	Facebook Stats view
+	"""
+	context = {'fb_stats':get_fb_stats()}
+
+	return render(request, 'facebook.html', context)
 
 @check_is_staff
 def conferences(request):

@@ -58,6 +58,31 @@ def get_stats():
  
 	return stats
 
+
+def get_fb_stats():
+
+	ups = UserProfile.objects.all()
+	all_users = UserProfile.objects.all().count()
+	fb = SocialAccount.objects.all().filter(provider='facebook').count()
+	no_fb = all_users - fb
+
+	fb_stats = {'TT':{'name':'Total',
+					  'no_fb':no_fb,
+					  'fb':fb}}
+	for code, name in COURSE_CHOICES:
+		this_users = ups.filter(course=code)
+		total_this = this_users.count()
+		fb = SocialAccount.objects.all().filter(provider='facebook', user__in=[x.user for x in this_users]).count()
+		no_fb = total_this - fb
+		if not total_this==0:
+			fb_stats.update({code:{ 'name': name,
+								'no_fb':no_fb,
+								'fb':fb}})
+	
+	print fb_stats
+
+	return fb_stats
+
 def apriori():
 	'''
 	Apriori algorithm for MBA, from https://github.com/asaini/Apriori/
