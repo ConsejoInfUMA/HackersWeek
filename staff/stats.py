@@ -72,7 +72,7 @@ def get_fb_stats():
 		total_this = this_users.count()
 		fb = SocialAccount.objects.all().filter(provider='facebook', user__in=[x.user for x in this_users]).count()
 		no_fb = total_this - fb
-		if not total_this==0:
+		if not total_this<2:
 			fb_stats.update({code:{ 'name': name,
 								'no_fb':no_fb,
 								'fb':fb}})
