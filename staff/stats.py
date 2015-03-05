@@ -66,9 +66,7 @@ def get_fb_stats():
 	fb = SocialAccount.objects.all().filter(provider='facebook').count()
 	no_fb = all_users - fb
 
-	fb_stats = {'TT':{'name':'Total',
-					  'no_fb':no_fb,
-					  'fb':fb}}
+	fb_stats = {}
 	for code, name in COURSE_CHOICES:
 		this_users = ups.filter(course=code)
 		total_this = this_users.count()
