@@ -146,7 +146,7 @@ def get_google_analytics_data():
 def get_sessions_and_users(service, profile_id):
 	return service.data().ga().get(
 	ids='ga:' + HACKERS_PROFILE_ID,
-	start_date='2015-02-13',
+	start_date='2015-02-23',
 	end_date='today',
 	sort='ga:year,ga:month,ga:day',
 	metrics='ga:sessions,ga:users',

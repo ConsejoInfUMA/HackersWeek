@@ -12,7 +12,7 @@ from google_analytics import get_google_analytics_data
 
 # Day where Analytics should start
 # TODO: use persistence (for the future)
-START_ANALYTICS_DAY = date(2015, 2, 13)
+START_ANALYTICS_DAY = date(2015, 2, 23)
 
 def get_signups_per_day():
 	"""
