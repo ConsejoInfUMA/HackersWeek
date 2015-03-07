@@ -97,6 +97,30 @@ Para todo esto, necesitas configurar una base de datos de pruebas. En principio,
 
 Una vez configurado todo esto, la web local debería funcionar con casi todas las funcionalidades de la web original (menos las analíticas de Google y el login con Facebook).
 
+###Okie dokie, todo fuma perfe… ¿cómo toco el código?
+
+Te recomiendo que, antes de intentar toquetear nada aquí, primero te informes de CÓMO hacerlo siguiendo el siguiente tutorial (a mi me llevó una horita, más o menos): https://docs.djangoproject.com/en/1.7/intro/tutorial01/. No obstante, si quieres cambiar un color en CSS, una imagen o whatever, puedes hacerlo en los archivos HTML/CSS y no necesitas saber nada más de Django que instalarlo y poder previsualizar los archivos.
+
+Voy a subdividir este apartado en tres subsecciones (de mayor a menor probabilidad):
+
+####Cómo editar CSS/HTML o añadir archivos
+
+Los archivos CSS e imágenes están en /static/css/ o /static/img. Puedes editarlo intentando comentar lo que hagas.
+
+Los archivos HTML se subdividen en tres:
+
+	- Archivos generales: se encuentran en el directorio /templates/. Ahí está la base (header y footer) y todo lo que tenga que ver con login.
+	- Web pública: todo está bajo /www/templates. Heredan de "base.html" en /templates/ para añadir el header y footer.
+	- Web de staff: todo está bajo /staff/templates/.
+
+Para cargar un archivo estático dentro del HTML (imagen, CSS, javascript) hay que meterlo en la carpeta /static y referenciarlo dentro del código con la siguiente etiqueta:
+
+
+	```
+	{% static '/ruta/al/archivo.jpg' %}
+	```
+
+
 ###Errores típicos/FAQ
 
 1. **Cuando ejecuto runserver, me dice que el puerto está en uso:** puedes cambiar el puerto donde se ejecuta el servidor añadiéndolo detrás de runserver. El próximo ejemplo sería para ejecutar el servidor en el 8081. Para más info, visita: https://docs.djangoproject.com/en/1.7/ref/django-admin/#runserver-port-or-address-port
