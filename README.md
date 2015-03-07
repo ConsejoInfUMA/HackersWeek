@@ -17,13 +17,13 @@ Antes de rendirte con algo… pregúntame al menos una vez!. Como me dijo una pr
 
 ![Attitude is everything!](http://i0.wp.com/prefer.co.nz/wp-content/uploads/2013/07/Attitude.jpg?fit=737%2C99999)
 
-###¿Cómo edito algo en esto?
+###¿Cómo edito algo en esto? [cambios sin persistencia]
 
 Lo primero que tienes que hacer es clonar el proyecto en tu ordenador con GIT. Si no sabes a qué me refiero, busca arriba el botón «descargar ZIP» y descárgate el ZIP. Si no, abre un terminal y escribe la siguiente línea:
 
-```
-git clone https://github.com/ConsejoInfUMA/HackersWeek.git
-```
+	```
+	git clone https://github.com/ConsejoInfUMA/HackersWeek.git
+	```
 
 Una vez instalado esto, necesitas que un par de cositas estén instaladas en tu ordenador… en concreto, python (2.5+) y pip. Comprobar que están instalados es tan fácil como ir a una consola, escribir «python» y ver que no te da error. Igual con pip. Si ves que alguno te da error, busca en Google: «Cómo instalar [python/pip] en [tu sistema operativo]». Si tienes dudas, @baenafrancisco.
 
@@ -33,63 +33,63 @@ En concreto, nos hacen falta dos librerías de Pyhton: django y django-allauth. 
 
 Linux/Mac:
 
-```
-sudo pip install -r requirements.txt
-```
+	```
+	sudo pip install -r requirements.txt
+	```
 
 Windows:
 
-```
-pip install -r requirements.txt
-```
+	```
+	pip install -r requirements.txt
+	```
 
 Si quieres hacer cambios en la portada de la web, el CSS, etc… no es extrictamente necesario utilizar el motor de persistencia (las bases de datos). Ya podrías ejecutar el proyecto django y ver (únicamente la portada) con el siguiente comando:
 
-```
-./manage.py runserver
-```
+	```
+	./manage.py runserver
+	```
 
 o
 
-```
-python manage.py runserver
-```
+	```
+	python manage.py runserver
+	```
 
 (Si no te funciona la primera sintaxis, usa la segunda siempre que veas ./)
 
 Eso ejecutará un servidor de pruebas al que podrás acceder desde el navegador en la dirección http://127.0.0.1:8000/. Puedes parar este servidor en cualquier momento pulsando Ctrl+c en tu terminal. (Mandando una SIGINT, cosa que entenderás si has dado SO :P)
 
-###Necesito editar cosas de STAFF/Login/etc…
+###Necesito editar cosas de STAFF/Login/etc… [cambios con persistencia]
 
 Para todo esto, necesitas configurar una base de datos de pruebas. En principio, es tan fácil como introducir tres comandos más y no debería hacer falta que tengas instalado nada más en tu ordenador, aunque si tienes algún fallo contacta conmigo y edito esta guía. Los siguientes comandos harán que tu aplicación tenga acceso a una base de datos. (Asegurate )
  
 1. El siguiente comando busca las descripciones de las clases que componen la base de datos y crea el SQL necesario para generar las tablas. 
 
-```
-./manage.py makemigrations
-```
+	```
+	./manage.py makemigrations
+	```
 
 
 2. Lo siguiente que hace falta es ejecutar ese SQL. Para ello, hay que escribir el siguiente comando:
 
-```
-./manage.py migrate
-```
+	```
+	./manage.py migrate
+	```
 
 3. Por último, si es la primera vez que creas la base de datos, hace falta crear el primer usuario del sistema (superusuario). Para ello, ejecuta el siguiente comando:
 
 
-```
-./manage.py syncdb
-```
+	```
+	./manage.py syncdb
+	```
 
 Te va a preguntar en Inglés si quieres crear un superusuario. Contesta «yes», e introduce los datos: usuario, email, contraseña, repite contraseña.
 
 4. Una vez actualizado todo y creado el superusuario, vamos a probar que funciona todo. Vuelve a ejecutar el servidor de pruebas:
 
-```
-./manage.py runserver
-```
+	```
+	./manage.py runserver
+	```
 
 Y loguéate en la web de administración: http://127.0.0.1:8000/admin/
 
@@ -97,5 +97,15 @@ Y loguéate en la web de administración: http://127.0.0.1:8000/admin/
 
 Una vez configurado todo esto, la web local debería funcionar con casi todas las funcionalidades de la web original (menos las analíticas de Google y el login con Facebook).
 
+###Errores típicos/FAQ
 
+1. **Cuando ejecuto runserver, me dice que el puerto está en uso:** puedes cambiar el puerto donde se ejecuta el servidor añadiéndolo detrás de runserver. El próximo ejemplo sería para ejecutar el servidor en el 8081. Para más info, visita: https://docs.djangoproject.com/en/1.7/ref/django-admin/#runserver-port-or-address-port
+
+	```
+	./manage.py runserver 8081
+	```
+
+2. **Me sale un error del tipo «table xxxxxx doesn't exist»:** necesitas seguir el tutorial bajo el título "Necesito editar cosas de STAFF/Login/etc… [cambios con persistencia]"
+
+3. **Todo funciona bien (puedo hasta loguearme en la web /admin/ pero me dice algo de «Provider not configured»):** mira el punto 5 de "Necesito editar cosas de STAFF/Login/etc… [cambios con persistencia]"
 
