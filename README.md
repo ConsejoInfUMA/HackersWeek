@@ -83,7 +83,7 @@ Para todo esto, necesitas configurar una base de datos de pruebas. En principio,
 	./manage.py syncdb
 	```
 
-Te va a preguntar en Inglés si quieres crear un superusuario. Contesta «yes», e introduce los datos: usuario, email, contraseña, repite contraseña.
+	Te va a preguntar en Inglés si quieres crear un superusuario. Contesta «yes», e introduce los datos: usuario, email, contraseña, repite contraseña.
 
 4. Una vez actualizado todo y creado el superusuario, vamos a probar que funciona todo. Vuelve a ejecutar el servidor de pruebas:
 
@@ -91,7 +91,7 @@ Te va a preguntar en Inglés si quieres crear un superusuario. Contesta «yes»,
 	./manage.py runserver
 	```
 
-Y loguéate en la web de administración: http://127.0.0.1:8000/admin/
+	Y loguéate en la web de administración: http://127.0.0.1:8000/admin/
 
 5. La web de Hackers Week usa login con Facebook. Para eso tiene instalada una extensión que controla todo esto automáticamente (django-allauth); pero para que todo funcione hace falta configurarlo inicialmente. Si cerrases sesión e intentases loguearte en la web, te daría un error del tipo «Provider Facebook not configured». Para evitar este error, simplemente hay que ir a la web de administración (http://127.0.0.1:8000/admin/), hacer clic en Social applications (bajo el apartado Social Accounts), Añadir Social Application (arriba a la derecha), escoger Facebook en el proveedor e inventarse el resto de datos en negrita. Atención: esto evitará que aparezca el problema en nuestro servidor local, pero no permitirá que podamos loguearnos con Facecbook desde el mismo. Como el login con Facebook está perfectamente testeado y funciona, no te va a hacer falta usar el real. Si hay algún problema en la web original, añade un Issue en GitHub y etiquétame (@baenafrancisco).
 
