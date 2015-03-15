@@ -11,5 +11,8 @@ urlpatterns = patterns('',
 	url(r'^mba/$', views.mba, name='mba'),
 	url(r'^facebook/$', views.facebook, name='facebook'),
 	url(r'^attendance/$', views.attendance, name='attendance'),
+	url(r'^api/lookup/$', views.busqueda, name='busqueda'),
+	url(r'^attendance/(?P<event_id>\d+)/$', views.attendance_event, name='attendance_event'),
+	url(r'^attendance/(?P<event_id>\d+)/e/$', views.enrol_attendance, name='enrol_attendance'),
 )
 

@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block extra_head %}
+<style type="text/css">
+	.shit{
+		margin-top: 25px;
+		text-align: center;
+	}
+	.user_cont{
+		background-color: #DFDFDF;
+		height: 52px;
+	}
+
+	.user_cont.selected{
+		background-color: #0A455D;
+		color: white;
+	}
+	
+
+</style>
+{% endblock %}
+
+{% block head_title %} - Attendance{% endblock %}
+
+{% block content %}
+{% include '_staff_nav.html' with page='attendance' %}
+<div class="container text-center" style="min-height:500px;">
+<p class="lead">
+	<h1><a href="{% url 'attendance' %}">Attendance</a></h1>
+	<h4>for «{{ event.name }}»</h4>
+</p>
+<hr>
+
+<div class="row">
+	<div class="col-md-3 col-md-offset-4">
+	<p><span id="attendee_no">{{ attendance.count }} attendee(s)</span></p>
+		<input type="text" class="form-control" placeholder="DNI" id="s">
+	</div>
+</div>
+
+<div id="bengochu" class="row shit">	
+</div>
+
+
+<hr>
+<div class="row text-center">
+<div class="col-md-7 col-md-offset-2">
+<table class="table">
+<thead>
+<tr>
+<th style="text-align:center">Username</th>
+<th>&nbsp;</th>
+</tr>
+</thead>
+<tbody id="users-table">
+{% for record in attendance %}
+
+<tr>
+<td>{{ record.user }}</td>
+<td>{{ record.timestamp|date:'d/m, H:i' }}h</td>
+</tr>
+
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+
+
+</div>
+
+{% endblock %}
+
+{% block extra_body %}
+<script type="text/javascript">
+
+	var search_field = document.getElementById('s');
+	var users_table = document.getElementById('users-table');
+	var userList = document.getElementById('bengochu');
+
+
+	var firstUser = null;
+
+	search_field.onkeyup = function(){
+		/* When something writtten... */
+		var s = search_field.value;
+		var search_request = new XMLHttpRequest();
+		var url = "/staff/api/lookup/?s=" + s;
+
+		search_request.addEventListener ("load", updateUserList);
+		search_request.open("GET" , url);
+	    search_request.send();
+		
+	};
+
+	search_field.onkeypress = function(e){
+		/* When clic enter */
+		if (e.keyCode==13){
+			if (firstUser!==null){
+				var message = "¿Inscribir a " + (firstUser.name==''?firstUser.username:firstUser.name) + "?";
+				if (firstUser.hasdni==false){
+					message = message + "\n\n¡No tenemos el DNI de este usuario!";
+				}
+				var c = confirm(message);
+				if (c===true){
+					note_attendance();
+				}
+			}
+		}
+	}
+
+	var note_attendance = function(){
+		var note_attendance_req = new XMLHttpRequest();
+    	var url = "{{ request.path }}e/";
+    	note_attendance_req.open("POST" , url, true);
+    	var data = new FormData();
+    	data.append("user_id", firstUser.id);
+    	note_attendance_req.setRequestHeader('X-CSRFToken','{{csrf_token}}');
+    	note_attendance_req.addEventListener("load", note_attendance_callback);
+    	note_attendance_req.send(data);
+    	users_table.innerHTML = [
+	    	'<tr>',
+			'<td>' + firstUser.username + '</td>',
+			'<td id="tsp' + firstUser.id + '">???</td>',
+			'</tr>'].join('\n') + users_table.innerHTML;
+	}
+
+	var note_attendance_callback = function(data){
+		if (data.target.status==201){
+			resp = JSON.parse(data.target.responseText);
+			document.getElementById('tsp' + resp.uid ).innerHTML = resp.timestamp + 'h';
+			document.getElementById('attendee_no').innerHTML = resp.attendees + ' attendee(s)!!';
+		} else if (data.target.status==200){
+			resp = JSON.parse(data.target.responseText);
+			document.getElementById('tsp' + resp.uid ).innerHTML = 'Already inscribed';
+			document.getElementById('attendee_no').innerHTML = resp.attendees + ' attendee(s)!!';
+		}
+	}
+
+	var cleanUserList = function(){
+		userList.innerHTML = '';
+	}
+
+	var addUsersToUserList = function(user_array){
+
+		var users_content = [];
+		if (user_array.length==0){
+			firstUser = null;
+		}
+
+		for(var i=0; i<user_array.length; i++){
+			var user = user_array[i];
+			if (i==0){firstUser = user;}
+			var this_user = [
+				'<div class="col-md-3 user_cont ' + (i==0?'selected':'')+'">',
+				user.name==''?user.username:user.name + '<br>',
+				'</div>'];
+			
+			users_content.push(this_user.join('\n'));
+		}
+		userList.innerHTML = users_content.join('\n');
+	}
+
+	var updateUserList = function(request_data){
+		cleanUserList();
+		addUsersToUserList(JSON.parse(request_data.target.responseText));
+	}
+
+	
+
+
+
+</script>
+{% endblock %}

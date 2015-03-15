@@ -11,7 +11,6 @@ class UserProfile(models.Model):
 	dni = models.CharField(max_length=25)
 	course = models.CharField(max_length=3, choices=COURSE_CHOICES, default='II')
 	auto_enroll_all = models.BooleanField(default=False)
-
 	def __unicode__(self):
 		return "%s" % self.user
 

@@ -12,7 +12,14 @@
 <div class="container text-center lead" style="min-height:500px;">
 <p class="lead">
 <h1>Attendance</h1>
-En desarrollo aún… ¡vuelve más tarde!
+
+<div class="list-group">
+{% for event in events %}
+
+<a href="./{{event.id}}/" class="list-group-item">{{ event.name }}</a>
+
+{% endfor %}
+</div>
 </p>
 </div>
 
