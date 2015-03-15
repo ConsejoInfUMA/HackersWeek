@@ -7,6 +7,8 @@ This is an update of https://github.com/ConsejoInfUMA/UHW, rewritten in order to
 Original designs made by https://github.com/fdezfuentes.
 Backend development by https://github.com/baenafrancisco.
 
+Thanks to @YouWoTMA for attendance monitoring search!
+
 ## In Spanish, motherfucker!
 
 ###¿Por qué una web en Python? ¿Qué clase de magia negra es esta?
