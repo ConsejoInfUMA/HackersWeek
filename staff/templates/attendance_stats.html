@@ -25,8 +25,32 @@
 
 <canvas id="attendance_stats" width="900" height="580"/>	
 
+</div>
 
+<div class="container text-center">
 
+<table class="table">
+	
+	<tr>
+
+		<th>Event</th>
+		<th>Ratio</th>
+		<th>Attended</th>
+		<th>Expected</th>
+		
+
+		
+		
+	</tr>
+	{% for event in tabulated %}
+	<tr>
+		<td>{{event.event}}</td>
+		<td>{{event.ratio}}%</td>
+		<td>{{event.attended}}</td>
+		<td>{{event.expected}}</td>
+	</tr>
+	{% endfor %}
+</table>
 </div>
 
 

@@ -109,19 +109,32 @@ def att_stats(request):
 	events = []
 	expected = []
 	attended = []
-
-
-
+	tabulated = []
 
 	for e in sorted(Event.objects.all(), key= lambda t: t.enrolled_no(), reverse=True):
 		events.append(e.slug)
 		expected.append(e.enrolled_no())
 		attended.append(e.attended_no())
 
+		if not e.enrolled_no() ==0:
+			ratio = e.attended_no()*100/e.enrolled_no()
+		else:
+			ratio = 0
+
+		tabulated.append({
+			'event':e.name,
+			'expected':e.enrolled_no(),
+			'attended':e.attended_no(),
+			'ratio':ratio
+		})
+
+	print tabulated
+
 	context = {
 		'events':events,
 		'expected':expected,
 		'attended':attended,
+		'tabulated':sorted(tabulated, key= lambda t: t['ratio'], reverse=True)
 	}
 
 	return render(request, 'attendance_stats.html', context)
