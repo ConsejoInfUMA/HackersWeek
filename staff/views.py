@@ -128,7 +128,6 @@ def att_stats(request):
 			'ratio':ratio
 		})
 
-	print tabulated
 
 	context = {
 		'events':events,
@@ -180,7 +179,6 @@ def enrol_attendance(req, event_id):
 								'uid':a.user.id,
 								'attendees':Attendance.objects.filter(event=event_id).count(),
 								'was_enrolled':a.was_enrolled()}
-					print response
 				else:
 					status_code = 200
 					response={	'uid':user_id,
