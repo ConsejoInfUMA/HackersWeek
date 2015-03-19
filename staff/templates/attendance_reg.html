@@ -11,11 +11,13 @@
 	.user_cont{
 		background-color: #DFDFDF;
 		height: 52px;
+		color: #888888;
 	}
 
 	.user_cont.selected{
 		background-color: #0A455D;
 		color: white;
+		font-weight: bold;
 	}
 	
 
@@ -52,6 +54,7 @@
 <tr>
 <th style="text-align:center">Username</th>
 <th>&nbsp;</th>
+<th>Enrolled?</th>
 </tr>
 </thead>
 <tbody id="users-table">
@@ -60,6 +63,11 @@
 <tr>
 <td>{{ record.user }}</td>
 <td>{{ record.timestamp|date:'d/m, H:i' }}h</td>
+<td>{% if record.was_enrolled %}
+	<span class="glyphicon glyphicon-ok" style="color:rgb(102, 255, 51)"></span>
+	{% else %}
+	<span class="glyphicon glyphicon-remove" style="color:red"></span>
+	{% endif %}</td>
 </tr>
 
 {% endfor %}
@@ -124,6 +132,7 @@
 	    	'<tr>',
 			'<td>' + firstUser.username + '</td>',
 			'<td id="tsp' + firstUser.id + '">???</td>',
+			'<td id="tsa' + firstUser.id + '">???</td>',
 			'</tr>'].join('\n') + users_table.innerHTML;
 	}
 
@@ -131,10 +140,13 @@
 		if (data.target.status==201){
 			resp = JSON.parse(data.target.responseText);
 			document.getElementById('tsp' + resp.uid ).innerHTML = resp.timestamp + 'h';
+
+			document.getElementById('tsa' + resp.uid ).innerHTML = resp.was_enrolled?'<span class="glyphicon glyphicon-ok" style="color:rgb(102, 255, 51)"></span>':'<span class="glyphicon glyphicon-remove" style="color:red"></span>';
 			document.getElementById('attendee_no').innerHTML = resp.attendees + ' attendee(s)!!';
 		} else if (data.target.status==200){
 			resp = JSON.parse(data.target.responseText);
 			document.getElementById('tsp' + resp.uid ).innerHTML = 'Already inscribed';
+			document.getElementById('tsa' + resp.uid ).innerHTML = '???';
 			document.getElementById('attendee_no').innerHTML = resp.attendees + ' attendee(s)!!';
 		}
 	}

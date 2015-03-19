@@ -15,13 +15,15 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li{% if page == 'home' %} class="active"{% endif %}><a href="{% url 'staff_home' %}">Home</a></li>
-        <li class="dropdown">
+        <li class="dropdown" {% if page == 'stats' %} class="active"{% endif %}>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Stats <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="{% url 'conferences' %}">Conferences</a></li>
             <li><a href="{% url 'workshops' %}">Workshops</a></li>
             <li><a href="{% url 'games' %}">Games</a></li>
             <li><a href="{% url 'misc' %}">Miscelanea</a></li>
+            <li class="divider"></li>
+            <li><a href="{% url 'att_stats' %}">Attendance</a></li>
             <li class="divider"></li>
             <li><a href="{% url 'mba' %}">Market Basket Analysis</a></li>
             <li><a href="{% url 'facebook' %}">Facebook</a></li>

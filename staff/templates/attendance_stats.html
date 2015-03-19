@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block extra_head %}
+<style type="text/css">
+	
+	#conference_enrolment{
+		width: 100% !important;
+		max-width: 200px;
+		height: auto !important;
+	}
+</style>
+{% endblock %}
+
+{% block head_title %} - Attendance Stats{% endblock %}
+
+{% block content %}
+{% include '_staff_nav.html' with page='stats' %}
+
+<div class="container text-center lead" style="min-height:400px;">
+<h2 class="text-center">Attendance Stats</h2>
+<p><strong>Enrolled vs Attended</strong></p>
+
+
+<canvas id="attendance_stats" width="900" height="580"/>	
+
+
+
+</div>
+
+
+{% endblock %}
+
+{% block extra_body %}
+<script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.tablesorter.min.js' %}"></script>
+<script type="text/javascript">
+
+	
+		 var attendance_stats_chart_data= {
+			    labels: [
+			    {% for e in events%}
+			    "{{e}}",
+			    {% endfor %}
+			    ],
+			    datasets: [
+			        {
+			            label: "Expected",
+			            fillColor: "rgba(220,220,220,0.5)",
+			            strokeColor: "rgba(220,220,220,0.8)",
+			            highlightFill: "rgba(220,220,220,0.75)",
+			            highlightStroke: "rgba(220,220,220,1)",
+			            data: [
+
+			            {% for d in expected%}
+			    		"{{d}}",
+			    		{% endfor %}
+
+			            ]
+			        },
+			        {
+			            label: "Attended",
+			            fillColor: "rgba(151,187,205,0.5)",
+			            strokeColor: "rgba(151,187,205,0.8)",
+			            highlightFill: "rgba(151,187,205,0.75)",
+			            highlightStroke: "rgba(151,187,205,1)",
+			            data: [
+			            {% for d in attended%}
+			    		"{{d}}",
+			    		{% endfor %}
+			            ]
+			        }
+			    ]
+			};
+
+
+
+  
+
+    window.onload = function(){    	
+    	var ctx = document.getElementById("attendance_stats").getContext("2d");
+		window.attendance_stats_chart = new Chart(ctx).Bar(attendance_stats_chart_data);
+
+     };
+
+
+    
+
+</script>
+{% endblock %}

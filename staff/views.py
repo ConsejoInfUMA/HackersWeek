@@ -101,6 +101,32 @@ def attendance_event(request, event_id):
 	return render(request, 'attendance_reg.html', context)
 
 
+@check_is_staff
+def att_stats(request):
+	"""
+	Attendance Stats view
+	"""
+	events = []
+	expected = []
+	attended = []
+
+
+
+
+	for e in sorted(Event.objects.all(), key= lambda t: t.enrolled_no(), reverse=True):
+		events.append(e.slug)
+		expected.append(e.enrolled_no())
+		attended.append(e.attended_no())
+
+	context = {
+		'events':events,
+		'expected':expected,
+		'attended':attended,
+	}
+
+	return render(request, 'attendance_stats.html', context)
+
+# Attendance monitoring
 def busqueda(req):
 	"""
 	Returns a list of users that matches the search criteria
@@ -139,11 +165,14 @@ def enrol_attendance(req, event_id):
 					status_code = 201
 					response={	'timestamp':a.timestamp.strftime('%d/%m, %H:%M'), 
 								'uid':a.user.id,
-								'attendees':Attendance.objects.filter(event=event_id).count()}
+								'attendees':Attendance.objects.filter(event=event_id).count(),
+								'was_enrolled':a.was_enrolled()}
+					print response
 				else:
 					status_code = 200
 					response={	'uid':user_id,
-								'attendees':Attendance.objects.filter(event=event_id).count()}
+								'attendees':Attendance.objects.filter(event=event_id).count(),
+								'was_enrolled':False}
 		else:
 			status_code = 400
 

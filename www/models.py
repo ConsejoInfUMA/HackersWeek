@@ -56,6 +56,13 @@ class Event(models.Model):
 	confirmed = models.BooleanField(default=True)
 	users_enrolled = models.ManyToManyField(User, blank=True, related_name='events')
 
+	def enrolled_no(self):
+		return self.users_enrolled.count()
+
+	def attended_no(self):
+		from staff.models import *
+		return Attendance.objects.filter(event=self).count()
+
 	def enrollment_available(self):
 		'''
 		Returns True if there are still vacancies

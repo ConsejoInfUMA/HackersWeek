@@ -23,6 +23,9 @@ class Attendance(models.Model):
 	event = models.ForeignKey(Event)
 	timestamp = models.DateTimeField(auto_now_add=True)
 	scored_by = models.ForeignKey(User, related_name='scores')
+
+	def was_enrolled(self):
+		return self.user in self.event.users_enrolled.all()
 	def __unicode__(self):
 		return "<%s attended to %s on %s>" % (self.user, self.event.name, self.timestamp)
 
