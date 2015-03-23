@@ -13,6 +13,8 @@ from django.shortcuts import render, redirect
 from .models import *
 from .decorators import *
 
+from staff.models import *
+
 
 @check_if_user_has_profile
 def home(request):
@@ -21,7 +23,14 @@ def home(request):
 	"""
 	if request.user.is_staff:
 		messages.info(request, 'Puedes <a href="/staff/">acceder aquí</a> al área de Staff.')
-	context = {}
+
+	streaming_code = None
+	if StaffDictionary.objects.filter(key='streaming_code').exists():
+		stored_code = StaffDictionary.objects.get(key='streaming_code').value
+		if not stored_code == '':
+			streaming_code = stored_code
+
+	context = { 'streaming_code':streaming_code }
 	return render(request, 'home.html', context)
 
 @check_if_user_has_profile

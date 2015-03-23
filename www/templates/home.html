@@ -7,6 +7,15 @@
 {% endblock %}
 
 {% block content %}
+
+{% if streaming_code %}
+<div class="container lightzone text-center">
+	<iframe width="100%" height="580vw" src="https://www.youtube.com/embed/{{ streaming_code }}" frameborder="0" allowfullscreen></iframe>
+	<p>Retransmisión en directo desde la Escuela Técnica Superior de Ingeniería Informática, Universidad de Málaga</p>
+</div>
+
+{% else %}
+
 <div class="container-fluid header-img">
 	<div class="container">
 		<div class="text">
@@ -15,6 +24,8 @@
 		</div>
 	</div>
 </div>
+
+{% endif %}
 
 <div class="container-fluid darkzone">
 	<div class="container">
