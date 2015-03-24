@@ -29,6 +29,8 @@
 {% block content %}
 {% include '_staff_nav.html' with page='attendance' %}
 <div class="container text-center" style="min-height:500px;">
+
+
 <p class="lead">
 	<h1><a href="{% url 'attendance' %}">Attendance</a></h1>
 	<h4>for «{{ event.name }}»</h4>
@@ -52,9 +54,12 @@
 <table class="table">
 <thead>
 <tr>
-<th style="text-align:center">Username</th>
-<th>&nbsp;</th>
-<th>Enrolled?</th>
+	<th style="text-align:center">Username</th>
+	<th>&nbsp;</th>
+	<th>Enrolled?</th>
+	{% if request.user.is_superuser %}
+	<th>By</th>
+	{% endif %}
 </tr>
 </thead>
 <tbody id="users-table">
@@ -68,6 +73,10 @@
 	{% else %}
 	<span class="glyphicon glyphicon-remove" style="color:red"></span>
 	{% endif %}</td>
+
+	{% if request.user.is_superuser %}
+	<td>{{ record.scored_by }}</td>
+	{% endif %}
 </tr>
 
 {% endfor %}
