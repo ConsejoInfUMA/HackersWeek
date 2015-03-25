@@ -4,9 +4,34 @@
 
 {% block extra_head %}
 	<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+
+	{% if trollimage %}
+	<style type="text/css">
+	.header-img .text{
+		top:265px;
+	}
+
+		.header-img{
+			height: 430px;
+			background: url("/static/img/v/{{trollimage}}.jpg") no-repeat scroll center center / cover transparent !important;
+		}
+	</style>
+	<script type="text/javascript">
+		
+
+		var troll = function(){
+			document.getElementById('tbox').innerHTML = "La #HackersWeek ha sido posible gracias a ti.<br><small>#grasia #{{user.first_name|lower}} #enserio</small>";
+
+		}
+
+		window.onload = troll;
+	</script>
+	{% endif %}
+
 {% endblock %}
 
 {% block content %}
+
 
 {% if streaming_code %}
 <div class="container lightzone text-center">
@@ -18,7 +43,7 @@
 
 <div class="container-fluid header-img">
 	<div class="container">
-		<div class="text">
+		<div class="text" id="tbox">
 			El evento para desarrolladores y estudiantes.<br>
 			Del 23 al 26 de marzo en Málaga.
 		</div>
