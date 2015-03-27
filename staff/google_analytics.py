@@ -147,7 +147,8 @@ def get_sessions_and_users(service, profile_id):
 	return service.data().ga().get(
 	ids='ga:' + HACKERS_PROFILE_ID,
 	start_date='2015-02-23',
-	end_date='today',
+	end_date='2015-03-27',
+	#end_date='today',
 	sort='ga:year,ga:month,ga:day',
 	metrics='ga:sessions,ga:users',
 	dimensions='ga:day,ga:month,ga:year', #ga:year
