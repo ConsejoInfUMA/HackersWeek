@@ -19,8 +19,9 @@ from staff.models import *
 @check_if_user_has_profile
 def home(request):
 	"""
-	This function displays the home page
+	Home page
 	"""
+	context = {}
 	streaming_code = None
 	if StaffDictionary.objects.filter(key='streaming_code').exists():
 		stored_code = StaffDictionary.objects.get(key='streaming_code').value
